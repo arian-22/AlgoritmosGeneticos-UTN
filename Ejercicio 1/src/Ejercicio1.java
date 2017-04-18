@@ -25,7 +25,7 @@ public class Ejercicio1 {
 		//System.out.println(a);
 		
 		for(int h = 0; h < 10; h++){
-			int entero = aEntero(poblacion[h]);
+			long entero = aEntero(poblacion[h]);
 			System.out.println(entero);
 		}
 		
@@ -45,17 +45,19 @@ public class Ejercicio1 {
 		return y;
 	}
 	
-	static int aEntero (int algo[])
+	static long aEntero (int[] algo)
 	{
-		int k=0, exp=0;
 		
-		for(int i = 29; i <= 0; i--){
-			if(algo[i] == 1){
-				k=k+(int) Math.pow(2, exp);
-				exp++;
-			}
+		String cromosoma = "";
+		for(int i = 0 ; i < 30; i++){
+			cromosoma = cromosoma + algo[i];
 		}
-		return k;
+		long decimalConv =Integer.parseInt(cromosoma, 2);
+		System.out.println("DECIMAL CONVERTIDO: "+decimalConv);
+		System.out.println("Cromosoma: " + cromosoma);
+		
+		
+		return decimalConv;
 	}
 }
 
