@@ -12,7 +12,9 @@ public class Ejercicio1 {
 	public static void main(String[] args) {
 		
 		//Declaracion de variables.
-		int poblacionInicial[][] = new int[10][30];
+		Poblacion Poblaciones[] = new Poblacion[20];
+		Poblacion poblacionInicial;
+		
 		float acum = 0;
 		int entero;
 		int maximo = 0, minimo = Integer.MAX_VALUE;
@@ -27,16 +29,27 @@ public class Ejercicio1 {
 		//Creacion de la poblacion original.
 		System.out.println("POBLACIÓN INICIAL:");
 		System.out.println("------------------");
+		
+		Poblacion p = new Poblacion();
+		
 		for (int i = 0; i < cantidadIteraciones; i++){
-			for (int j = 0;j < 30; j++){
-				int x = rnd.nextInt(2);
-				poblacionInicial[i][j] = x;
-			}
+			Cromosoma c = new Cromosoma();
+			c.crearBinario();
+			
+			p.añadirCromosoma(c);
 			//System.out.println(Arrays.toString(poblacion[i]));
-			System.out.println("Nro. "+(i+1)+": " + devuelveBinario(poblacionInicial[i]));
+			//System.out.println("Nro. "+(i+1)+": " + devuelveBinario(poblacionInicial[i]));
 		}
+		p.inicializar();
+		poblacionInicial = p;
+		
 		System.out.println("_____________________________________________________\n");
+		
+		
+		
+		
 		for(int h = 0; h < cantidadIteraciones; h++){
+			
 			entero = aEntero(poblacionInicial[h]);
 			System.out.println("#"+(h+1));
 			System.out.println("Cromosoma BINARIO: " + devuelveBinario(poblacionInicial[h]));
