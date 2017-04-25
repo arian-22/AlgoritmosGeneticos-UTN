@@ -1,12 +1,25 @@
+import java.util.Arrays;
 import java.util.Random;
+
+import com.sun.javafx.collections.SortableList;
 
 public class Ejercicio1 {
 
+	private double Crossover = 0.75;
+	private double Mutacion = 0.05;
+	private static Random rnd = new Random();
+	
 	public static void main(String[] args) {
 		
 		//Declaracion de variables.
 		int poblacionInicial[][] = new int[10][30];
-
+		float acum = 0;
+		int entero;
+		int maximo = 0, minimo = Integer.MAX_VALUE;
+		int cantidadIteraciones = 5, cantidadCiclos = 5; 
+		float promedio, fitness;
+		float ruleta[] = new float[cantidadIteraciones];
+		int pares[] = new int[cantidadIteraciones];
 		/*
 		 * Programa principal
 		 * */
@@ -14,9 +27,8 @@ public class Ejercicio1 {
 		//Creacion de la poblacion original.
 		System.out.println("POBLACIÓN INICIAL:");
 		System.out.println("------------------");
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < cantidadIteraciones; i++){
 			for (int j = 0;j < 30; j++){
-				Random rnd = new Random();
 				int x = rnd.nextInt(2);
 				poblacionInicial[i][j] = x;
 			}
@@ -24,34 +36,72 @@ public class Ejercicio1 {
 			System.out.println("Nro. "+(i+1)+": " + devuelveBinario(poblacionInicial[i]));
 		}
 		System.out.println("_____________________________________________________\n");
-		
-		for(int h = 0; h < 10; h++){
-			long entero = aEntero(poblacionInicial[h]);
+		for(int h = 0; h < cantidadIteraciones; h++){
+			entero = aEntero(poblacionInicial[h]);
 			System.out.println("#"+(h+1));
 			System.out.println("Cromosoma BINARIO: " + devuelveBinario(poblacionInicial[h]));
 			System.out.println("Cromosoma en DECIMAL: " + entero);
-			System.out.println("");
+			System.out.println("F.Obj: "+ funcionObjetivo(entero));
+			acum= funcionObjetivo(entero)+acum;
+			
+			if(entero <= minimo){
+				minimo = entero;
+			}
+			if(entero >= maximo){
+				maximo = entero;
+			}	
 		}
+		System.out.println("");
+		for(int i = 0; i < cantidadIteraciones; i++){
+			entero = aEntero(poblacionInicial[i]);
+			fitness = funcionObjetivo(entero)/acum;
+			ruleta[i] = fitness;
+			System.out.println("Fitness #"+(i+1)+": "+fitness);
+		}
+		
+		Arrays.sort(ruleta);
+		
+		System.out.println("_____________________________________________________\n");
+		System.out.println("Valor Mínimo: " + minimo);
+		System.out.println("Valor Máximo: " + maximo);
+		System.out.println("Suma: "+acum);
+		promedio = acum/cantidadIteraciones;
+		System.out.println("Promedio: " + promedio);
+		
+		//Selección metodo de la Ruleta
+		for(int i = 0; i < cantidadCiclos; i++){
+			for(int j = 0; j < cantidadIteraciones; i++){
+				boolean ok = true;
+				int k = 0;
+				
+				float azar = rnd.nextInt(100) / 100;
+				while(ok){
+					if(azar <= ruleta[k]){
+						
+						ok = false;
+					}
+				}
+			}
+		}
+		
 	}
 	
 	//Declaracion de metodos
 	
-	int funcionObjetivo (){
-		int y;
-
-		Random rnd = new Random();
+	static float funcionObjetivo (float z){
+	    	
 		int coef = (int) ((Math.pow(2, 30))-1);
-		int x = rnd.nextInt();
 		
-		y = (int)Math.pow( (x/coef) , 2);
+		float d=(z/coef);
+		float g = (float)Math.pow((d), 2);
 		
-		return y;
+		return g;
 	}
 	
-	static long aEntero (int[] array){
+	static int aEntero (int[] array){
 		
 		String cromosoma = devuelveBinario(array);	
-		long decimalConv = Integer.parseInt(cromosoma, 2);
+		int decimalConv = Integer.parseInt(cromosoma, 2);
 		
 		return decimalConv;
 	}
@@ -63,5 +113,27 @@ public class Ejercicio1 {
 			cromosoma = cromosoma + array[i];
 		}
 		return cromosoma;
+	}
+	
+	private void Crossover(int[] cromosoma_1, int[] cromosoma_2){
+		int nroAzar = rnd.nextInt(29);
+		int aux;
+		
+		for(; nroAzar < 30; nroAzar++){
+			aux = cromosoma_1[nroAzar];
+			cromosoma_1[nroAzar] = cromosoma_2[nroAzar];
+			cromosoma_2[nroAzar] = aux;
+		}
+	}
+	
+	private void Mutacion(int[] cromosoma){
+		int nroAzar = rnd.nextInt(29);
+		
+		if(cromosoma[nroAzar] == 0){
+			cromosoma[nroAzar] = 1;
+		}else{
+			cromosoma[nroAzar] = 0;
+		}
+		
 	}
 }
