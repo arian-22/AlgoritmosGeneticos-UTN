@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Random;
-
 import com.sun.javafx.collections.SortableList;
 
 public class Ejercicio1 {
@@ -8,45 +7,44 @@ public class Ejercicio1 {
 	private double Crossover = 0.75;
 	private double Mutacion = 0.05;
 	private static Random rnd = new Random();
+	public static int cantidadCiclos = 5;
+	public static int cantidadIteraciones = 5; 
 	
 	public static void main(String[] args) {
 		
 		//Declaracion de variables.
 		Poblacion Poblaciones[] = new Poblacion[20];
-		Poblacion poblacionInicial;
-		
 		float acum = 0;
 		int entero;
 		int maximo = 0, minimo = Integer.MAX_VALUE;
-		int cantidadIteraciones = 5, cantidadCiclos = 5; 
 		float promedio, fitness;
 		float ruleta[] = new float[cantidadIteraciones];
 		int pares[] = new int[cantidadIteraciones];
+		
 		/*
 		 * Programa principal
 		 * */
 		
 		//Creacion de la poblacion original.
-		System.out.println("POBLACIÓN INICIAL:");
-		System.out.println("------------------");
 		
 		Poblacion p = new Poblacion();
+		System.out.println("POBLACIÓN #");
+		System.out.println("------------------");
 		
 		for (int i = 0; i < cantidadIteraciones; i++){
 			Cromosoma c = new Cromosoma();
-			c.crearBinario();
-			
+			System.out.println("-Cromosoma #" + (i+1));
+			c.inicializar();
 			p.añadirCromosoma(c);
-			//System.out.println(Arrays.toString(poblacion[i]));
-			//System.out.println("Nro. "+(i+1)+": " + devuelveBinario(poblacionInicial[i]));
+			System.out.println();
 		}
 		p.inicializar();
-		poblacionInicial = p;
+		p.evolucionarGeneticamente();
 		
 		System.out.println("_____________________________________________________\n");
 		
 		
-		
+		/*
 		
 		for(int h = 0; h < cantidadIteraciones; h++){
 			
@@ -96,7 +94,7 @@ public class Ejercicio1 {
 				}
 			}
 		}
-		
+	*/
 	}
 	
 	//Declaracion de metodos

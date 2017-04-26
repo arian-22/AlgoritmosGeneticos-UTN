@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Poblacion {
-	private ArrayList<Cromosoma> cromosomas=new ArrayList<Cromosoma>();
-	private int maximo = 0, minimo = Integer.MAX_VALUE, suma = 0;
+	private ArrayList<Cromosoma> cromosomas = new ArrayList<Cromosoma>();
+	private int maximo = 0, minimo = Integer.MAX_VALUE;
+	private long suma = 0;
 	private float promedio;
-	private int cantIter=5;
+	private int cantIteraciones = Ejercicio1.cantidadIteraciones;
+	private Cromosoma ruleta[] = new Cromosoma[cantIteraciones];
+	private int paresDePadres[] = new int[cantIteraciones];
 	
 	public void añadirCromosoma(Cromosoma c){
 		cromosomas.add(c);
@@ -35,11 +39,11 @@ public class Poblacion {
 		this.minimo = minimo;
 	}
 
-	public int getSuma() {
+	public long getSuma() {
 		return suma;
 	}
 
-	public void setSuma(int suma) {
+	public void setSuma(long suma) {
 		this.suma = suma;
 	}
 
@@ -52,42 +56,101 @@ public class Poblacion {
 	}
 	
 	public void calcularMaximo(){
-		
-		for(int i=0; i < cantIter; i++){
-			if(cromosomas.get(i).getdecimal() >= maximo){
-				maximo = cromosomas.get(i).getdecimal();
+		for(int i=0; i < cantIteraciones; i++){
+			if(cromosomas.get(i).getValorDecimal() >= maximo){
+				maximo = cromosomas.get(i).getValorDecimal();
 			}
 		}
-		
+		System.out.println("   Máximo: " + maximo);		
 	}
 	
 	public void calcularMinimo(){
-		for(int i=0; i < cantIter; i++){
-			if(cromosomas.get(i).getdecimal() <= minimo){
-				minimo = cromosomas.get(i).getdecimal();
+		for(int i=0; i < cantIteraciones; i++){
+			if(cromosomas.get(i).getValorDecimal() <= minimo){
+				minimo = cromosomas.get(i).getValorDecimal();
 			}
 		}
+		System.out.println("   Mínimo: " + minimo);
 	}
 	
-	public void calcularSumatoria(){
+	public void calcularSumatoriaFuncionObjetivo(){
+		long acum = 0;
 		
-		for(int i=0; i < cantIter; i++){
-			suma = cromosomas.get(i).getdecimal() + suma;
+		for(int i=0; i < cantIteraciones; i++){
+			acum += cromosomas.get(i).getValorDecimal();
 		}
+		suma = acum;
+		System.out.println("~Sumatoria de los valores de la F.O.: " + suma);
+	}
+	
+	public void calcularSumatoriaFuncionFitness(){
+		long acum = 0;
 		
-		
+		for(int i=0; i < cantIteraciones; i++){
+			acum += cromosomas.get(i).getFitness();
+		}
+		//suma = acum;
+		System.out.println("~Sumatoria de los valores de la F.F.: " + acum);
 	}
 	
 	public void calcularPromedio(){
-		promedio=suma/cromosomas.size();
-		
+		promedio = suma / cantIteraciones;
+		System.out.println("   Pomedio: " + promedio);
 	}
 	
 	public void evolucionarGeneticamente(){
-		
+		this.crearRuleta();
+		this.metodoDeLaRuleta();
 	}
 	
-	public void inicializarPoblacion(){
+	private void metodoDeLaRuleta() {
+		for(int j = 0; j < cantIteraciones; j++){
+			boolean ok = true;
+			int posicion = 0;
+			
+			double azar = Math.random();
+			while(ok){
+				if(azar <= ruleta[posicion].getFitness()){
+					
+					ok = false;
+				}
+			}
+		}
+	}
+
+	private void crearRuleta() {
+		
+		//REVISAR CODIGO DE ORDENAMIENTO!
+		
+		for(int i=0; i < cantIteraciones-1; i++){
+			for(int j = 0; j < cantIteraciones-i-1; j++){
+				if(cromosomas.get(j+1).getFitness() < cromosomas.get(j).getFitness()){
+					ruleta[i] = cromosomas.get(j+1);
+				}else{
+					ruleta[i] = cromosomas.get(j);
+				}
+			}
+			System.out.println("Orden: " + ruleta[i].getFitness());
+		}
+		//Arrays.sort(ruleta);
+	}
+
+	public void inicializar(){
+		this.calcularSumatoriaFuncionObjetivo();
+		System.out.println();
+		System.out.println("Valores Fitness y Funcion Objetivo de la población.");
+		for(int i=0; i < cantIteraciones; i++){
+			System.out.println("-Cromosoma #" + (i+1));
+			cromosomas.get(i).funcionObjetivo();
+			cromosomas.get(i).funcionFitness(suma);
+		}
+		System.out.println();
+		this.calcularSumatoriaFuncionFitness();
+		System.out.println();
+		System.out.println("Datos de la población.");
+		this.calcularMaximo();
+		this.calcularMinimo();
+		this.calcularPromedio();		
 		
 	}
 }
