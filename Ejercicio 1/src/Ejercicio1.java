@@ -1,35 +1,27 @@
-import java.util.Arrays;
-import java.util.Random;
-import com.sun.javafx.collections.SortableList;
-
 public class Ejercicio1 {
 
-	private double Crossover = 0.75;
-	private double Mutacion = 0.05;
-	private static Random rnd = new Random();
-	public static int cantidadCiclos = 5;
-	public static int cantidadIteraciones = 5; 
+	private static double Crossover = 0.75;
+	private static double Mutacion = 0.05;
+	public static int cantidadCiclos = 100;
+	public static int cantidadIteraciones = 6; 
 	
 	public static void main(String[] args) {
 		
 		//Declaracion de variables.
-		Poblacion Poblaciones[] = new Poblacion[20];
-		float acum = 0;
-		int entero;
-		int maximo = 0, minimo = Integer.MAX_VALUE;
-		float promedio, fitness;
-		float ruleta[] = new float[cantidadIteraciones];
-		int pares[] = new int[cantidadIteraciones];
+		Poblacion Poblaciones[] = new Poblacion[cantidadCiclos];
 		
 		/*
 		 * Programa principal
 		 * */
 		
-		//Creacion de la poblacion original.
+		//Creacion de la poblacion inicial.
 		
 		Poblacion p = new Poblacion();
-		System.out.println("POBLACIÓN #");
-		System.out.println("------------------");
+		
+
+		System.out.println("-------------------------------------------------------");
+		System.out.println("******************** POBLACIÓN #1 *********************");
+		System.out.println("-------------------------------------------------------");
 		
 		for (int i = 0; i < cantidadIteraciones; i++){
 			Cromosoma c = new Cromosoma();
@@ -41,110 +33,33 @@ public class Ejercicio1 {
 		p.inicializar();
 		p.evolucionarGeneticamente();
 		
-		System.out.println("_____________________________________________________\n");
+		Poblaciones[0] = p;
 		
-		
-		/*
-		
-		for(int h = 0; h < cantidadIteraciones; h++){
+		for(int i = 1; i < cantidadCiclos; i++){
+			System.out.println("-------------------------------------------------------");
+			System.out.println("******************** POBLACIÓN #"+(i+1)+" *********************");
+			System.out.println("-------------------------------------------------------");
 			
-			entero = aEntero(poblacionInicial[h]);
-			System.out.println("#"+(h+1));
-			System.out.println("Cromosoma BINARIO: " + devuelveBinario(poblacionInicial[h]));
-			System.out.println("Cromosoma en DECIMAL: " + entero);
-			System.out.println("F.Obj: "+ funcionObjetivo(entero));
-			acum= funcionObjetivo(entero)+acum;
+			p = Poblaciones[i-1];
 			
-			if(entero <= minimo){
-				minimo = entero;
+			for (int j = 0; j < cantidadIteraciones; j++){
+				System.out.println("-Cromosoma #" + (j+1));
+				p.getCromosomas().get(j).aEntero();
 			}
-			if(entero >= maximo){
-				maximo = entero;
-			}	
+			p.inicializar();
+			p.evolucionarGeneticamente();
+			
+			Poblaciones[i] = p;
 		}
-		System.out.println("");
-		for(int i = 0; i < cantidadIteraciones; i++){
-			entero = aEntero(poblacionInicial[i]);
-			fitness = funcionObjetivo(entero)/acum;
-			ruleta[i] = fitness;
-			System.out.println("Fitness #"+(i+1)+": "+fitness);
-		}
-		
-		Arrays.sort(ruleta);
-		
-		System.out.println("_____________________________________________________\n");
-		System.out.println("Valor Mínimo: " + minimo);
-		System.out.println("Valor Máximo: " + maximo);
-		System.out.println("Suma: "+acum);
-		promedio = acum/cantidadIteraciones;
-		System.out.println("Promedio: " + promedio);
-		
-		//Selección metodo de la Ruleta
-		for(int i = 0; i < cantidadCiclos; i++){
-			for(int j = 0; j < cantidadIteraciones; i++){
-				boolean ok = true;
-				int k = 0;
-				
-				float azar = rnd.nextInt(100) / 100;
-				while(ok){
-					if(azar <= ruleta[k]){
-						
-						ok = false;
-					}
-				}
-			}
-		}
-	*/
 	}
 	
 	//Declaracion de metodos
 	
-	static float funcionObjetivo (float z){
-	    	
-		int coef = (int) ((Math.pow(2, 30))-1);
-		
-		float d=(z/coef);
-		float g = (float)Math.pow((d), 2);
-		
-		return g;
+	public static double getMutacion() {
+		return Mutacion;
 	}
-	
-	static int aEntero (int[] array){
-		
-		String cromosoma = devuelveBinario(array);	
-		int decimalConv = Integer.parseInt(cromosoma, 2);
-		
-		return decimalConv;
-	}
-	
-	private static String devuelveBinario(int[] array){
-		
-		String cromosoma = "";
-		for(int i = 0 ; i < 30; i++){
-			cromosoma = cromosoma + array[i];
-		}
-		return cromosoma;
-	}
-	
-	private void Crossover(int[] cromosoma_1, int[] cromosoma_2){
-		int nroAzar = rnd.nextInt(29);
-		int aux;
-		
-		for(; nroAzar < 30; nroAzar++){
-			aux = cromosoma_1[nroAzar];
-			cromosoma_1[nroAzar] = cromosoma_2[nroAzar];
-			cromosoma_2[nroAzar] = aux;
-		}
-	}
-	
-	private void Mutacion(int[] cromosoma){
-		int nroAzar = rnd.nextInt(29);
-		
-		if(cromosoma[nroAzar] == 0){
-			cromosoma[nroAzar] = 1;
-		}else{
-			cromosoma[nroAzar] = 0;
-		}
-		
+
+	public static double getCrossover() {
+		return Crossover;
 	}
 }

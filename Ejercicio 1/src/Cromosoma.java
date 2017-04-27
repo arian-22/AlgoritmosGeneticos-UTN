@@ -1,20 +1,38 @@
 import java.util.Arrays;
 import java.util.Random;
 
-public class Cromosoma {
+public class Cromosoma implements Comparable<Cromosoma> {
 	private int arrayCromo[] = new int[30];
 	private String cromosoma = "";
-	private int valorDecimal;
+	private long valorDecimal;
 	private double valorFuncionObjetivo;
 	private double valorFitness;
 	private Random rnd = new Random();
-	
 	
 	Cromosoma(){
 		
 	}
 	
-	public int getValorDecimal() {
+	
+	public int[] getArrayCromo() {
+		return arrayCromo;
+	}
+
+
+	public void setArrayCromo(int[] arrayCromo) {
+		this.arrayCromo = arrayCromo;
+	}
+
+
+	public double getValorFuncionObjetivo() {
+		return valorFuncionObjetivo;
+	}
+
+	public void setValorFuncionObjetivo(double valorFuncionObjetivo) {
+		this.valorFuncionObjetivo = valorFuncionObjetivo;
+	}
+	
+	public long getValorDecimal() {
 		return valorDecimal;
 	}
 
@@ -40,11 +58,12 @@ public class Cromosoma {
 	
 	public void aEntero (){
 		this.devuelveBinario();	
-		valorDecimal = Integer.parseInt(cromosoma, 2);
+		valorDecimal = Long.parseLong(cromosoma, 2);
 		System.out.println("Valor decimal: " + valorDecimal);
 	}
 	
 	private void devuelveBinario(){
+		cromosoma = "";
 		for(int i = 0 ; i < 30; i++){
 			cromosoma = cromosoma + arrayCromo [i];
 		}
@@ -55,17 +74,37 @@ public class Cromosoma {
 		double coef = Math.pow(2, 30) - 1;
 		double d = valorDecimal / coef;
 		valorFuncionObjetivo = Math.pow((d), 2);
+		
+		//System.out.println("   F. Objetivo: " + valorFuncionObjetivo);
+		
+		valorFuncionObjetivo = Math.rint(valorFuncionObjetivo*10000)/10000;
+		
 		System.out.println("   F. Objetivo: " + valorFuncionObjetivo);
 	}
 	
-	public void funcionFitness(long suma) {
-		this.valorFitness = this.valorFuncionObjetivo / suma;
+	public void funcionFitness(double sumaFuncionObjetivo) {
+		valorFitness = valorFuncionObjetivo / sumaFuncionObjetivo;
+		//System.out.println("   Fitness: " + valorFitness);
+		
+		valorFitness = Math.rint(valorFitness*10000)/10000;
 		System.out.println("   Fitness: " + valorFitness);
 	}
 	
 	public void inicializar(){
 		this.crearBinario();
 		this.aEntero();
+		
 	}
+	
+	@Override
+	public int compareTo(Cromosoma c) {
+		if (valorFitness < c.valorFitness) {
+            return -1;
+        }
+        if (valorFitness > c.valorFitness) {
+            return 1;
+        }
+        return 0;
+    }
 
 }
