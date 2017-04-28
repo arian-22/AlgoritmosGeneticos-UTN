@@ -2,7 +2,7 @@ public class Ejercicio1 {
 
 	private static double Crossover = 0.75;
 	private static double Mutacion = 0.05;
-	public static int cantidadCiclos = 100;
+	public static int cantidadCiclos = 5;
 	public static int cantidadIteraciones = 6; 
 	
 	public static void main(String[] args) {
