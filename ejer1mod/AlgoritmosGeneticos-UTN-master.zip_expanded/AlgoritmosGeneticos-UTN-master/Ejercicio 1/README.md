@@ -1,1 +1,0 @@
-Ejercico 1 de la práctica.
