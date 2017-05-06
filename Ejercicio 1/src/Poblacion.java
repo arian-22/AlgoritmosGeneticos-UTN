@@ -8,11 +8,13 @@ public class Poblacion {
 	private double sumaFuncionObjetivo = 0;
 	private double promedio;
 	private int cantIteraciones = Ejercicio1.cantidadIteraciones;
+	//private Cromosoma pichi[] =  new Cromosoma[cantIteraciones];
+	private int pichi[] = new int[30];
 	private Cromosoma ruleta[] = new Cromosoma[cantIteraciones];
 	private Cromosoma paresDePadres[] = new Cromosoma[cantIteraciones];
 	private Random rnd = new Random();
 	
-	public void añadirCromosoma(Cromosoma c){
+	public void aÃ±adirCromosoma(Cromosoma c){
 		cromosomas.add(c);
 	}
 
@@ -62,7 +64,7 @@ public class Poblacion {
 				maximo = cromosomas.get(i).getValorFuncionObjetivo();
 			}
 		}
-		System.out.println("   Máximo: " + maximo);		
+		System.out.println("   Maximo: " + maximo);		
 	}
 	
 	public void calcularMinimo(){
@@ -71,7 +73,7 @@ public class Poblacion {
 				minimo = cromosomas.get(i).getValorFuncionObjetivo();
 			}
 		}
-		System.out.println("   Mínimo: " + minimo);
+		System.out.println("   Minimo: " + minimo);
 	}
 	
 	public void calcularSumatoriaFuncionObjetivo(){
@@ -90,7 +92,6 @@ public class Poblacion {
 		for(int i=0; i < cantIteraciones; i++){
 			acum += cromosomas.get(i).getFitness();
 		}
-		//suma = acum;
 		System.out.println("~Sumatoria de los valores de la F.F.: " + acum);
 	}
 	
@@ -105,29 +106,42 @@ public class Poblacion {
 		this.crearRuleta();
 		this.metodoDeLaRuleta();
 		
+		cromosomas.clear();
+		
+		//Crossover
 		System.out.println();
 		for(int i=0; i < cantIteraciones; i+=2){
 			random = Math.random();
 			if(random <= Ejercicio1.getCrossover()){
 				System.out.println("Resultado del Crossover para el par (" + (i+1) + ","+(i+2)+")");
-				this.Crossover(paresDePadres[i], paresDePadres[i+1]);
+				this.Crossover(paresDePadres[i], paresDePadres[i+1], i);
 			}else{
 				System.out.println("No hubo Crossover para el par (" + (i+1) + ","+(i+2)+")" + " - Random (" + random + ") > Crossover (" + Ejercicio1.getCrossover() + ")");
+				cromosomas.add(paresDePadres[i]);
+				cromosomas.add(paresDePadres[i+1]);
 			}
 			System.out.println();
 		}
 		
 		System.out.println();
 		
+		//Mutacion
 		for(int i=0; i < cantIteraciones; i++){
 			random = Math.random();
+			
 			if(random <= Ejercicio1.getMutacion()){
 				System.out.println("Resultado de la Mutacion para el cromosoma #" + (i+1));
-				this.Mutacion(paresDePadres[i]);
+				this.Mutacion(cromosomas.get(i), i);
+				//cromosomas.get(i).mutacion();
 			}else{
+				//pichi[i]=cromosomas.get(i);
 				System.out.println("No hubo Mutacion para el cromosoma #" + (i+1) + " - Random (" + random + ") > Crossover (" + Ejercicio1.getMutacion() + ")");
 			}
 		}
+		
+		/*for(int b=0;b<pichi.length;b++){
+			System.out.println("pichi "+(pichi[b]) );
+		}*/
 	}
 	
 	private void metodoDeLaRuleta() {
@@ -137,11 +151,11 @@ public class Poblacion {
 			boolean ok = true;
 			int posicion = 0;
 			
-			System.out.println(" Padre #"+(j+1));
+			//System.out.println(" Padre #"+(j+1));
 			double azar = Math.rint(Math.random()*10000)/10000;
-			System.out.println(" >>Nro azar: "+ azar);
+			//System.out.println(" >>Nro azar: "+ azar);
 			while(ok){
-				System.out.println("  Fitnes del cromosoma: "+ruleta[posicion].getFitness());
+				//System.out.println("  Fitnes del cromosoma: "+ruleta[posicion].getFitness());
 				if(azar <= ruleta[posicion].getFitness()){
 					paresDePadres[j] = ruleta[posicion];
 					ok = false;
@@ -149,7 +163,7 @@ public class Poblacion {
 				}else{
 					if(posicion < cantIteraciones-1){
 						posicion++;
-						System.out.println("  Siguiente");
+						//System.out.println("  Siguiente");
 					}else{
 						paresDePadres[j] = ruleta[posicion];
 						ok = false;
@@ -163,24 +177,24 @@ public class Poblacion {
 
 	private void crearRuleta() {
 		System.out.println();
-		System.out.println("Ruleta segun Fitness");
-		System.out.println(" Sin ordenar");
+		//System.out.println("Ruleta segun Fitness");
+		//System.out.println(" Sin ordenar");
 		for(int i=0; i < cantIteraciones; i++){
 			ruleta[i] = cromosomas.get(i);
-			System.out.println("   "+(i+1)+")" + ruleta[i].getFitness());
+			//System.out.println("   "+(i+1)+")" + ruleta[i].getFitness());
 		}
 		
 		Arrays.sort(ruleta);
 		
-		System.out.println(" Ordenados");
+		//System.out.println(" Ordenados");
 		for(int i=0; i < cantIteraciones; i++){
-			System.out.println("   "+(i+1)+")" + ruleta[i].getFitness());
+			//System.out.println("   "+(i+1)+")" + ruleta[i].getFitness());
 		}
 	}
 
 	public void inicializar(){
 		System.out.println();
-		System.out.println("Valores de la Funcion Objetivo de la población.");
+		System.out.println("Valores de la Funcion Objetivo de la poblacion.");
 		for(int i=0; i < cantIteraciones; i++){
 			System.out.print("-Cromosoma #" + (i+1) + "  --->");
 			cromosomas.get(i).funcionObjetivo();
@@ -189,7 +203,7 @@ public class Poblacion {
 		
 		System.out.println();
 		
-		System.out.println("Valores Fitness de la población.");
+		System.out.println("Valores Fitness de la poblacion.");
 		for(int i=0; i < cantIteraciones; i++){
 			System.out.print("-Cromosoma #" + (i+1) + "  --->");
 			cromosomas.get(i).funcionFitness(sumaFuncionObjetivo);
@@ -198,14 +212,17 @@ public class Poblacion {
 		
 		System.out.println();
 		
-		System.out.println("Datos de la población.");
+		System.out.println("Datos de la poblacion.");
+		
+		maximo = 0;
 		this.calcularMaximo();
+		minimo = Double.MAX_VALUE;
 		this.calcularMinimo();
 		this.calcularPromedio();		
 		
 	}
 	
-	private void Crossover(Cromosoma c1, Cromosoma c2){
+	private void Crossover(Cromosoma c1, Cromosoma c2, int i){
 		int nroAzar = rnd .nextInt(29);
 		int aux;
 		
@@ -219,22 +236,43 @@ public class Poblacion {
 			c1.getArrayCromo()[nroAzar] = c2.getArrayCromo()[nroAzar];
 			c2.getArrayCromo()[nroAzar] = aux;
 		}
+		
+		cromosomas.add(c1);
+		cromosomas.add(c2);
+				
 		System.out.println("Cromosoma hijo 1: " + Arrays.toString(c1.getArrayCromo()));
-		System.out.println("Cromosoma hijo 2: " + Arrays.toString(c2.getArrayCromo()));		
+		System.out.println("Cromosoma hijo 2: " + Arrays.toString(c2.getArrayCromo()));	
+		
+		
 	}
 	
-	private void Mutacion(Cromosoma c1){
+	private void Mutacion(Cromosoma c1, int i){
 		int nroAzar = rnd.nextInt(29);
+		int c[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		Cromosoma cm = new Cromosoma();
+		Cromosoma s = new Cromosoma();
+		
+		s.setArrayCromo(c1.getArrayCromo());
+
 		
 		System.out.println("- - - - - - - - - - - -");
 		System.out.println("Cromosoma original: " + Arrays.toString(c1.getArrayCromo()));
 		System.out.println(" >>> Posicion a mutar: " + (nroAzar+1)+" <<<");
-		if(c1.getArrayCromo()[nroAzar] == 0){
-			c1.getArrayCromo()[nroAzar] = 1;
+		
+		
+		
+		if(s.getArrayCromo()[nroAzar] == 0){
+			s.getArrayCromo()[nroAzar] = 1;
 		}else{
-			c1.getArrayCromo()[nroAzar] = 0;
+			s.getArrayCromo()[nroAzar] = 0;
 		}
-		System.out.println("Cromosoma mutado: " + Arrays.toString(c1.getArrayCromo()));
+		
+		System.out.println("Cromosoma mutado: " + Arrays.toString(s.getArrayCromo()));
+		
+		cm.setArrayCromo(s.getArrayCromo());
+		
+		cm.setArrayCromo(c);
+		cromosomas.set(i, cm);
 		
 	}
 

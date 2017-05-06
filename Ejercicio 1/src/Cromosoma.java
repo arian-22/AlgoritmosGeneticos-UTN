@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class Cromosoma implements Comparable<Cromosoma> {
 	private int arrayCromo[] = new int[30];
 	private String cromosoma = "";
@@ -14,6 +15,19 @@ public class Cromosoma implements Comparable<Cromosoma> {
 	}
 	
 	
+	
+	public String getCromosoma() {
+		return cromosoma;
+	}
+
+
+
+	public void setCromosoma(String cromosoma) {
+		this.cromosoma = cromosoma;
+	}
+
+
+
 	public int[] getArrayCromo() {
 		return arrayCromo;
 	}
@@ -56,10 +70,12 @@ public class Cromosoma implements Comparable<Cromosoma> {
 		System.out.println("Array binario: " + Arrays.toString(arrayCromo));
 	}
 	
-	public void aEntero (){
+	public Cromosoma aEntero (){
 		this.devuelveBinario();	
 		valorDecimal = Long.parseLong(cromosoma, 2);
 		System.out.println("Valor decimal: " + valorDecimal);
+		
+		return this;
 	}
 	
 	private void devuelveBinario(){
@@ -106,5 +122,21 @@ public class Cromosoma implements Comparable<Cromosoma> {
         }
         return 0;
     }
+
+
+
+	public void mutacion() {
+		int h = rnd.nextInt(29);
+		
+		if(arrayCromo[h] == 0){
+			arrayCromo[h] = 1;
+		}else{
+			arrayCromo[h] = 0;
+		}
+		
+		int c[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		arrayCromo = c;
+		
+	}
 
 }
