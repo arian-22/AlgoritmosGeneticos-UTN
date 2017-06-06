@@ -8,13 +8,12 @@ public class Poblacion {
 	private double sumaFuncionObjetivo = 0;
 	private double promedio;
 	private int cantIteraciones = Ejercicio1.cantidadIteraciones;
-	//private Cromosoma pichi[] =  new Cromosoma[cantIteraciones];
-	private int pichi[] = new int[30];
+	
 	private Cromosoma ruleta[] = new Cromosoma[cantIteraciones];
 	private Cromosoma paresDePadres[] = new Cromosoma[cantIteraciones];
 	private Random rnd = new Random();
 	
-	public void aÃ±adirCromosoma(Cromosoma c){
+	public void añadirCromosoma(Cromosoma c){
 		cromosomas.add(c);
 	}
 
@@ -248,8 +247,8 @@ public class Poblacion {
 	
 	private void Mutacion(Cromosoma c1, int i){
 		int nroAzar = rnd.nextInt(29);
-		int c[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-		Cromosoma cm = new Cromosoma();
+		//int c[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		//Cromosoma cm = new Cromosoma();
 		Cromosoma s = new Cromosoma();
 		
 		s.setArrayCromo(c1.getArrayCromo());
@@ -261,18 +260,18 @@ public class Poblacion {
 		
 		
 		
-		if(s.getArrayCromo()[nroAzar] == 0){
-			s.getArrayCromo()[nroAzar] = 1;
+		if(c1.getArrayCromo()[nroAzar] == 0){
+			c1.getArrayCromo()[nroAzar] = 1;
 		}else{
-			s.getArrayCromo()[nroAzar] = 0;
+			c1.getArrayCromo()[nroAzar] = 0;
 		}
 		
-		System.out.println("Cromosoma mutado: " + Arrays.toString(s.getArrayCromo()));
+		System.out.println("Cromosoma mutado: " + Arrays.toString(c1.getArrayCromo()));
 		
-		cm.setArrayCromo(s.getArrayCromo());
+		//cm.setArrayCromo(s.getArrayCromo());
 		
-		cm.setArrayCromo(c);
-		cromosomas.set(i, cm);
+		//cm.setArrayCromo(c);
+		//cromosomas.set(i, cm);
 		
 	}
 

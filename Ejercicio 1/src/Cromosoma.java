@@ -79,11 +79,11 @@ public class Cromosoma implements Comparable<Cromosoma> {
 	}
 	
 	private void devuelveBinario(){
-		cromosoma = "";
+		this.cromosoma = "";
 		for(int i = 0 ; i < 30; i++){
-			cromosoma = cromosoma + arrayCromo [i];
+			this.cromosoma = this.cromosoma + arrayCromo [i];
 		}
-		System.out.println("Valor binario: " + cromosoma);
+		System.out.println("Valor binario: " + this.cromosoma);
 	}
 	
 	public void funcionObjetivo (){
@@ -112,7 +112,7 @@ public class Cromosoma implements Comparable<Cromosoma> {
 		
 	}
 	
-	@Override
+	
 	public int compareTo(Cromosoma c) {
 		if (valorFitness < c.valorFitness) {
             return -1;
@@ -124,19 +124,15 @@ public class Cromosoma implements Comparable<Cromosoma> {
     }
 
 
-
-	public void mutacion() {
+	/*public void mutacion() {
 		int h = rnd.nextInt(29);
 		
 		if(arrayCromo[h] == 0){
 			arrayCromo[h] = 1;
 		}else{
 			arrayCromo[h] = 0;
-		}
+		}*/
 		
-		int c[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-		arrayCromo = c;
-		
-	}
+	//}
 
 }

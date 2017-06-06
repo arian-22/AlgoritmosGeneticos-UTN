@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.*;
 public class Ejercicio1 {
 
 	private static double Crossover = 0.75;
-	private static double Mutacion = 0.10;
-	public static int cantidadCiclos = 15;
+	private static double Mutacion = 0;
+	public static int cantidadCiclos =1000;
 	public static int cantidadIteraciones = 10;
 	
 	public static void main(String[] args) {
@@ -51,7 +51,7 @@ public class Ejercicio1 {
 			Cromosoma c = new Cromosoma();
 			System.out.println("-Cromosoma #" + (i+1));
 			c.inicializar();
-			p.aÃ±adirCromosoma(c);
+			p.añadirCromosoma(c);
 			System.out.println();
 		}
 		p.inicializar();
@@ -188,6 +188,7 @@ public class Ejercicio1 {
 			for (int j = 0; j < cantidadIteraciones; j++){
 				System.out.println("-Cromosoma #" + (j+1));
 				pob.getCromosomas().get(j).aEntero();
+				
 			}
 			
 			pob.inicializar();
@@ -301,6 +302,8 @@ public class Ejercicio1 {
 			Poblaciones[i] = pob;
 			
 			//p.evolucionarGeneticamente();
+			
+			p = null;
 			
 		}
 		time_end = System.currentTimeMillis();
