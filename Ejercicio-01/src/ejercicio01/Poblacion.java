@@ -145,6 +145,8 @@ public class Poblacion {
 				this.Crossover(paresDePadres[i], paresDePadres[i+1], i);
 			}else{
 				System.out.println("No hubo Crossover para el par (" + (i+1) + ","+(i+2)+")" + " - Random (" + random + ") > Crossover (" + Ejercicio_01.getCrossover() + ")");
+				cromosomas[i] =  new Cromosoma();
+				cromosomas[i+1] = new Cromosoma();
 				cromosomas[i].setArrayDeGenes(paresDePadres[i].getArrayDeGenes());
 				cromosomas[i+1].setArrayDeGenes(paresDePadres[i+1].getArrayDeGenes());
 			}
@@ -196,7 +198,8 @@ public class Poblacion {
 			crom1.getArrayDeGenes()[nroAzar] = c2.getArrayDeGenes()[nroAzar];
 			crom2.getArrayDeGenes()[nroAzar] = c1.getArrayDeGenes()[nroAzar];
 		}
-		
+		cromosomas[i] =  new Cromosoma();
+		cromosomas[i+1] = new Cromosoma();
 		cromosomas[i].setArrayDeGenes(crom1.getArrayDeGenes());
 		cromosomas[i].setArrayDeGenes(crom2.getArrayDeGenes());
 				

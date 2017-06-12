@@ -5,7 +5,7 @@ import ejercicio01.Poblacion;
 public class ImprimirEnConsola {
 
 	public ImprimirEnConsola(Poblacion[] poblaciones) {
-		for(int i=0 ; i < 1 /*poblaciones.length*/ ; i++){
+		for(int i=0 ; i < poblaciones.length; i++){
 			System.out.println("<---------- Poblacion #"+(i+1)+" ---------->");
 			System.out.println("");
 			System.out.println("Lista de cromosomas de la poblacion:");
@@ -21,6 +21,7 @@ public class ImprimirEnConsola {
 			System.out.println("  Minimo: " + poblaciones[i].getMinimo());
 			System.out.println("  Suma de la Funcion objetivo: " + poblaciones[i].getSumaFuncionObjetivo());
 			System.out.println("  Promedio: " + poblaciones[i].getPromedio());
+			System.out.println();
 		}
 	}
 
