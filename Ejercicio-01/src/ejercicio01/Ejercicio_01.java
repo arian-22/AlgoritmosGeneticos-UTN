@@ -5,8 +5,8 @@ import utils.*;
 
 public class Ejercicio_01 {
 	/*Definicion de variables de clase*/
-	public static int cantidadDeCromosomas = 4;
-	public static int cantidadDeCiclos = 4;
+	public static int cantidadDeCromosomas = 6;
+	public static int cantidadDeCiclos = 10;
 	private static double Crossover = 0.75;
 	private static double Mutacion = 0.05;
 		
@@ -19,7 +19,7 @@ public class Ejercicio_01 {
 		boolean elitismo = false;
 		
 		//Variables para el desarrollo del programa
-		Poblacion poblaciones[] = new Poblacion[cantidadDeCromosomas];
+		Poblacion poblaciones[] = new Poblacion[cantidadDeCiclos];
 		
 				
 		/*Programa principal*/
@@ -62,17 +62,12 @@ public class Ejercicio_01 {
 		
 		/*Una vez que esta la poblacion, someterla a la evolucion genetica*/
 		for(int i=1; i < cantidadDeCiclos ; i++){
-			System.out.println("A: " + i);
 			poblaciones[i] = new Poblacion();
 			//Evolucionar Geneticamente
 			poblaciones[i] = evolucionGenetica(poblaciones[i-1]);
 			
-			System.out.println("B: " + i);
-			
 			//Reinicializar los datos de la poblacion actual
 			poblaciones[i].calcularValoresDeLaPoblacion();
-			
-			System.out.println("C: " + i);
 		}
 				
 			
