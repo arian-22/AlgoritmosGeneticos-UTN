@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.*;
 public class Ejercicio1 {
 
 	private static double Crossover = 0.75;
-	private static double Mutacion = 0;
-	public static int cantidadCiclos =1000;
+	private static double Mutacion = 0.05;
+	public static int cantidadCiclos =10;
 	public static int cantidadIteraciones = 10;
 	
 	public static void main(String[] args) {
@@ -28,8 +28,6 @@ public class Ejercicio1 {
 		Row fila,fila2;
 		Cell celda,celda2;
 		int nroFila = 0, nroFila2=0;
-		
-		
 		String[] titulos = {"Poblacion 1", "Valor Decimal", 
                 "Funcion Objetivo", "Funcion Fitness" };
 		
@@ -51,7 +49,7 @@ public class Ejercicio1 {
 			Cromosoma c = new Cromosoma();
 			System.out.println("-Cromosoma #" + (i+1));
 			c.inicializar();
-			p.añadirCromosoma(c);
+			p.aniadirCromosoma(c);
 			System.out.println();
 		}
 		p.inicializar();
@@ -173,14 +171,15 @@ public class Ejercicio1 {
 		
 		
 		Poblaciones[0] = p;
-		Poblacion pob = Poblaciones[0];
+		Poblacion pob; // = Poblaciones[0];
 		
 		for(int i = 1; i < cantidadCiclos; i++){
 			System.out.println("-------------------------------------------------------");
 			System.out.println("******************** POBLACION #"+(i+1)+" *********************");
 			System.out.println("-------------------------------------------------------");
 			
-			//Poblacion pob = Poblaciones[i-1];
+			pob = new Poblacion();
+			pob = Poblaciones[i-1];
 			
 			pob.evolucionarGeneticamente();
 			
@@ -354,60 +353,12 @@ public class Ejercicio1 {
 		if (imprime.equals("S") || imprime.equals("s")){
 			System.out.println("Imprime.");*/
 			
-			//Generacion del archivo de EXCEL
-			/*File archivo = new File("Informe.xlsx");
-			Workbook workbook = new HSSFWorkbook(); 
-			Sheet pagina = workbook.createSheet("Evolucion AG");*/
-						
-			// Creamos el estilo paga las celdas del encabezado
-	       /* CellStyle style = workbook.createCellStyle();
-	        // Indicamos que tendra un fondo azul aqua
-	        // con patron solido del color indicado
-	        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
-	        
-	        String[] titulos = {"Identificador", "Consumos", 
-	                            "Precio Venta", "Precio Compra" };
-	        Double[] datos = {1.0, 10.0, 45.5, 25.50};        
-	        
-	        // Creamos una fila en la hoja en la posicion 0
-	       // Row fila = pagina.createRow(0);
-	        
-	        // Creamos el encabezado
-	        for(int i = 0; i < titulos.length; i++) {
-	            // Creamos una celda en esa fila, en la posicion 
-	            // indicada por el contador del ciclo
-	            Cell celda = fila.createCell(i);
-	            
-	            // Indicamos el estilo que deseamos 
-	            // usar en la celda, en este caso el unico 
-	            // que hemos creado
-	            celda.setCellStyle(style); 
-	            celda.setCellValue(titulos[i]);
-	        }		
-
-	        // Ahora creamos una fila en la posicion 1
-	        fila = pagina.createRow(1);
-	        
-	        // Y colocamos los datos en esa fila
-	        for(int i = 0; i < datos.length; i++) {
-	            // Creamos una celda en esa fila, en la
-	            // posicion indicada por el contador del ciclo
-	            Cell celda = fila.createCell(i);
-	            
-	            celda.setCellValue( datos[i] );        
-	        }
 			
-			// Ahora guardaremos el archivo
-	        try {
-	            // Creamos el flujo de salida de datos, apuntando al archivo donde queremos almacenar el libro de Excel
-	            FileOutputStream salida = new FileOutputStream(archivo);
-	            // Almacenamos el libro de Excel via ese flujo de datos
-	            workbook.write(salida);
-	            
-	            // Cerramos el libro para concluir operaciones
-	            workbook.close();
+		 	
+		 
+		 
 	         
-	            System.out.println("Archivo creado existosamente en " + archivo.getAbsolutePath());  
+	     /*       System.out.println("Archivo creado existosamente en " + archivo.getAbsolutePath());  
 	        }catch (FileNotFoundException ex) {
 	            System.out.println("Archivo no localizable en sistema de archivos");
 	        }catch (IOException ex) {

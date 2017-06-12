@@ -13,7 +13,7 @@ public class Poblacion {
 	private Cromosoma paresDePadres[] = new Cromosoma[cantIteraciones];
 	private Random rnd = new Random();
 	
-	public void añadirCromosoma(Cromosoma c){
+	public void aniadirCromosoma(Cromosoma c){
 		cromosomas.add(c);
 	}
 
@@ -106,6 +106,7 @@ public class Poblacion {
 		this.metodoDeLaRuleta();
 		
 		cromosomas.clear();
+		cromosomas = new ArrayList<Cromosoma>();
 		
 		//Crossover
 		System.out.println();
@@ -151,11 +152,17 @@ public class Poblacion {
 			int posicion = 0;
 			
 			//System.out.println(" Padre #"+(j+1));
-			double azar = Math.rint(Math.random()*10000)/10000;
+			//double azar = Math.rint(Math.random()*10000)/10000;
 			//System.out.println(" >>Nro azar: "+ azar);
+			
+			double azar = rnd.nextDouble() * 100;
+			
+			System.out.println("Nro al AZAR --> " + azar);
+			
 			while(ok){
-				//System.out.println("  Fitnes del cromosoma: "+ruleta[posicion].getFitness());
-				if(azar <= ruleta[posicion].getFitness()){
+				System.out.println("  Fitnes del cromosoma: "+(ruleta[posicion].getFitness()*100));
+				
+				if(azar <= (ruleta[posicion].getFitness()*100)){
 					paresDePadres[j] = ruleta[posicion];
 					ok = false;
 					System.out.println("  Comosoma seleccionado: #" + (posicion+1));
@@ -225,6 +232,7 @@ public class Poblacion {
 		int nroAzar = rnd .nextInt(29);
 		int aux;
 		
+		
 		System.out.println("- - - - - - - - - - - -");
 		System.out.println("Cromosoma padre 1: " + Arrays.toString(c1.getArrayCromo()));
 		System.out.println("Cromosoma padre 2: " + Arrays.toString(c2.getArrayCromo()));
@@ -260,11 +268,13 @@ public class Poblacion {
 		
 		
 		
-		if(c1.getArrayCromo()[nroAzar] == 0){
-			c1.getArrayCromo()[nroAzar] = 1;
+		if(s.getArrayCromo()[nroAzar] == 0){
+			s.getArrayCromo()[nroAzar] = 1;
 		}else{
-			c1.getArrayCromo()[nroAzar] = 0;
+			s.getArrayCromo()[nroAzar] = 0;
 		}
+		
+		c1.setArrayCromo(s.getArrayCromo());
 		
 		System.out.println("Cromosoma mutado: " + Arrays.toString(c1.getArrayCromo()));
 		
