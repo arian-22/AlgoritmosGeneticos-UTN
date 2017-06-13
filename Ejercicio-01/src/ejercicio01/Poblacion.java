@@ -160,19 +160,18 @@ public class Poblacion {
 			random = Math.random();
 			if(random <= Ejercicio_01.getMutacion()){
 				System.out.println("Resultado de la Mutacion para el cromosoma #" + (i+1));
-				cromosomas[i] =  new Cromosoma();
-				cromosomas[i] = this.Mutacion(cromosomas[i]);
+				cromosomas[i] = this.Mutacion(cromosomas[i], i);
 			}else{
 				System.out.println("No hubo Mutacion para el cromosoma #" + (i+1) + " - Random (" + random + ") > Crossover (" + Ejercicio_01.getMutacion() + ")");
 			}
 		}
 	}
 
-	private Cromosoma Mutacion(Cromosoma cromosoma) {
+	private Cromosoma Mutacion(Cromosoma cromosoma, int i) {
 		int nroAzar = rnd.nextInt(29);
 		Cromosoma s = new Cromosoma();
-		
 		s.setArrayDeGenes(cromosoma.getArrayDeGenes().clone());
+		cromosomas[i] =  new Cromosoma();
 		if(s.getArrayDeGenes()[nroAzar] == 0){
 			s.getArrayDeGenes()[nroAzar] = 1;
 		}else{
