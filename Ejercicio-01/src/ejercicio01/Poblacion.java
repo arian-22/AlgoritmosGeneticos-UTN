@@ -169,6 +169,7 @@ public class Poblacion {
 		for(int i=0; i < cantidadDeCromosomas; i+=2){
 			random = Math.random();
 			if(random <= Ejercicio_01.getCrossover()){
+				System.out.println();
 				System.out.println("Resultado del Crossover para el par (" + (i+1) + ","+(i+2)+")");
 				this.Crossover(paresDePadres[i], paresDePadres[i+1], i);
 			}else{
@@ -304,13 +305,13 @@ public class Poblacion {
 			for(int i = 0; i < cantidadDeCromosomas; i++){   
 					while (flag == false)
 					{
-		                current += ruleta[i].
-		                if (current > pick){
-		                   paresDePadres[i].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
-		                    flag = true;
-		                }else{ break; }
-		    	 	}
-			}             
+		ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ current += ruleta[i].
+		ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ if (current > pick){
+		ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½paresDePadres[i].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
+		ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ flag = true;
+		ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ }else{ break; }
+		ï¿½ ï¿½ 	ï¿½	}
+			} ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ ï¿½ 
 		} return paresDePadres;
 	}*/
 	

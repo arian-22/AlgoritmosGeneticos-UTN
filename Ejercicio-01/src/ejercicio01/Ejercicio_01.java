@@ -6,7 +6,7 @@ import utils.*;
 public class Ejercicio_01 {
 	/*Definicion de variables de clase*/
 	public static int cantidadDeCromosomas = 10;
-	public static int cantidadDeCiclos = 100;
+	public static int cantidadDeCiclos = 15;
 	private static double Crossover = 0.75;
 	private static double Mutacion = 0.05;
 		
@@ -14,9 +14,10 @@ public class Ejercicio_01 {
 		/*Definicion de variables de instancia*/
 		//Variables auxiliares
 		Scanner scan = new Scanner(System.in);
-		
-		
 		boolean elitismo = false;
+		
+		@SuppressWarnings("unused")
+		ImprimirEnConsola print;
 		
 		//Variables para el desarrollo del programa
 		Poblacion poblaciones[] = new Poblacion[cantidadDeCiclos];
@@ -46,7 +47,7 @@ public class Ejercicio_01 {
 		System.out.println("    Mutacion: " + Mutacion);
 	//	
 		//Preguntar si desea realizarla con elitismo
-		System.out.print("¿Desea realizar con Elitismo? (S/N): ");
+		System.out.print("Â¿Desea realizar con Elitismo? (S/N): ");
 		String realizaConElitismo = scan.next();
 		if (realizaConElitismo.equals("S") || realizaConElitismo.equals("s")){
 			elitismo = true;
@@ -60,6 +61,7 @@ public class Ejercicio_01 {
 		poblaciones[0].crearPoblacionInicial();
 		//Calcular los valores de la poblacion
 		poblaciones[0].calcularValoresDeLaPoblacion();
+		print = new ImprimirEnConsola(poblaciones[0], 0);
 		
 		/*Una vez que esta la poblacion, someterla a la evolucion genetica*/
 		for(int i=1; i < cantidadDeCiclos ; i++){
@@ -69,12 +71,13 @@ public class Ejercicio_01 {
 			
 			//Reinicializar los datos de la poblacion actual
 			poblaciones[i].calcularValoresDeLaPoblacion();
+			print = new ImprimirEnConsola(poblaciones[i], i);
 		}
 				
 			
 		
 		//Preguntar si desea emitir informe
-		System.out.println("¿Que desea imprimir? ");
+		System.out.println("Â¿Que desea imprimir? ");
 		System.out.println("1 - Imprimir en consola");
 		System.out.println("2 - Imprimir excel");
 		System.out.println("3 - Imprimir ambas");

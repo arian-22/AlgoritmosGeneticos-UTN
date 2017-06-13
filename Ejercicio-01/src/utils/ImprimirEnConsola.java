@@ -24,4 +24,24 @@ public class ImprimirEnConsola {
 			System.out.println();
 		}
 	}
+	
+	public ImprimirEnConsola(Poblacion poblaciones, int i) {
+		System.out.println();
+		System.out.println("<---------- Poblacion #"+(i+1)+" ---------->");
+		System.out.println("");
+		System.out.println("Lista de cromosomas de la poblacion:");
+		for(int j=0 ; j < poblaciones.getCromosomas().length ; j++){
+			System.out.println("  Cromosoma #"+(j+1));
+			System.out.println("    Binario: "+poblaciones.getCromosomas()[j].getCromosoma());
+			System.out.println("    Decimal: "+poblaciones.getCromosomas()[j].getValorDecimal());
+			System.out.println("    Valor func. objetivo:"+poblaciones.getCromosomas()[j].getValorFuncionObjetivo());
+			System.out.println("    Valor Fitness: "+poblaciones.getCromosomas()[j].getValorFitness());
+		} 
+		System.out.println("Datos de la poblacion:");
+		System.out.println("  Maximo: " + poblaciones.getMaximo());
+		System.out.println("  Minimo: " + poblaciones.getMinimo());
+		System.out.println("  Suma de la Funcion objetivo: " + poblaciones.getSumaFuncionObjetivo());
+		System.out.println("  Promedio: " + poblaciones.getPromedio());
+		System.out.println();
+	}
 }
