@@ -5,8 +5,8 @@ import utils.*;
 
 public class Ejercicio_01 {
 	/*Definicion de variables de clase*/
-	public static int cantidadDeCromosomas = 6;
-	public static int cantidadDeCiclos = 10;
+	public static int cantidadDeCromosomas = 10;
+	public static int cantidadDeCiclos = 2000;
 	private static double Crossover = 0.75;
 	private static double Mutacion = 0.05;
 		

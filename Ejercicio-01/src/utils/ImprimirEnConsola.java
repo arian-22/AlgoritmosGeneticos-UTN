@@ -24,5 +24,4 @@ public class ImprimirEnConsola {
 			System.out.println();
 		}
 	}
-
 }

@@ -16,7 +16,8 @@ public class Cromosoma implements Comparable<Cromosoma> {
 	}
 
 	public void setArrayDeGenes(int[] arrayDeGenes) {
-		this.arrayDeGenes = arrayDeGenes;
+		this.arrayDeGenes = new int[cantidadDeGenes];
+		this.arrayDeGenes = arrayDeGenes.clone();
 	}
 
 	public double getValorFitness() {
