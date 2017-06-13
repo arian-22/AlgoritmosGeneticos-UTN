@@ -5,8 +5,9 @@ import java.util.Random;
 
 public class Poblacion {
 	/*Variables de la clase*/
-	//private int cantidadIteraciones = Ejercicio_01.cantidadDeCiclos;
+	public static boolean elitismo ;
 	private int cantidadDeCromosomas = Ejercicio_01.cantidadDeCromosomas;
+	//private int cantidadDeCiclos = Ejercicio_01.cantidadDeCiclos;
 	private Cromosoma cromosomas[] = new Cromosoma[cantidadDeCromosomas];
 	private double maximo = 0, minimo = Double.MAX_VALUE;
 	private double sumaFuncionObjetivo = 0;
@@ -14,7 +15,24 @@ public class Poblacion {
 	private Cromosoma[] valoresEnRuleta; 
 	private Random rnd = new Random();
 	private Cromosoma[] paresDePadres;
+	private Cromosoma elite = new Cromosoma();
 	
+	public boolean isElitismo() {
+		return elitismo;
+	}
+
+	public static void setElitismo(boolean eli) {
+		elitismo = eli;
+	}
+	
+	public Cromosoma getElite() {
+		return elite;
+	}
+
+	public void setElite(Cromosoma elite) {
+		this.elite = elite;
+	}
+
 	public void setCromosomas(Cromosoma[] cromosomas) {
 		this.cromosomas = cromosomas;
 	}
@@ -106,9 +124,15 @@ public class Poblacion {
 		for(int i=0; i < cantidadDeCromosomas; i++){
 			if(cromosomas[i].getValorFuncionObjetivo() >= max){
 				max = cromosomas[i].getValorFuncionObjetivo();
+				this.setElite(cromosomas[i]);
+				
 			}
+			
 		}
+		
 		this.setMaximo(max);
+		
+		
 	}
 
 	public void calcularSumatoriaFuncionObjetivo(){
@@ -134,8 +158,12 @@ public class Poblacion {
 		Arrays.sort(this.valoresEnRuleta);
 		
 		//Realizo el metodo de la ruleta para generar los pares de padres
-		this.metodoDeLaRuleta();
-		
+		//this.metodoDeLaRuleta();
+		if(elitismo){
+		this.metodoDeLaRuletaConElitismo();
+		}
+		else
+		{this.metodoDeLaRuleta();}
 		//Crossover
 		cromosomas = new Cromosoma[cantidadDeCromosomas];
 		for(int i=0; i < cantidadDeCromosomas; i+=2){
@@ -209,16 +237,16 @@ public class Poblacion {
 		
 	}
 
-	private void metodoDeLaRuleta() {
+	/*private void metodoDeLaRuleta() {
 		paresDePadres = new Cromosoma[cantidadDeCromosomas];
-		
+		System.out.println("-----------------------RULETA-------------------------");
 		for(int j = 0; j < cantidadDeCromosomas; j++){
 			boolean ok = true;
 			int posicion = 0;
 			paresDePadres[j] = new Cromosoma();
 			
 			double azar = rnd.nextDouble();
-			
+			System.out.println("RANDOM: "+azar +"  VS RULETA:  "+valoresEnRuleta[j].getValorFitness());
 			while(ok){
 				if(azar <= valoresEnRuleta[posicion].getValorFitness()){
 					paresDePadres[j].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
@@ -232,8 +260,109 @@ public class Poblacion {
 					}
 				}
 			}
-		}
+		}System.out.println("------------------------FIN RULETA---------------------");
+		
+	}*/
+//--NOTA: podria usar el mismo metodo con paresDePAdres [0] = max cromo --> esto es prueba	
+	private void metodoDeLaRuletaConElitismo(){
+		paresDePadres = new Cromosoma[cantidadDeCromosomas];
+		paresDePadres[0] =elite;
+		System.out.println("-----------------------RULETA-------------------------");
+		for(int j = 1; j < cantidadDeCromosomas; j++){
+			boolean ok = true;
+			int posicion = 0;
+			paresDePadres[j] = new Cromosoma();
+			
+			double azar = rnd.nextDouble();
+			System.out.println("RANDOM: "+azar +"  VS RULETA:  "+valoresEnRuleta[j].getValorFitness());
+			while(ok){
+				if(azar <= valoresEnRuleta[posicion].getValorFitness()){
+					paresDePadres[j].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
+					ok = false;
+				}else{
+					if(posicion < cantidadDeCromosomas-1){
+						posicion++;
+					}else{
+						paresDePadres[j].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
+						ok = false;
+					}
+				}
+			}
+		}System.out.println("------------------------FIN RULETA---------------------");
 		
 	}
+	
+	/*private Cromosoma[] metodoDeLaRuleta(int valores) { //------------------------------RULETA PYTHON
+
+		paresDePadres = new Cromosoma[cantidadDeCromosomas];
+
+		// for i in range(0, nropob):
+		for(int j = 0; j < cantidadDeCiclos; j++){
+			double	pick = Math.random();
+			int current = 0;
+			boolean flag = false;
+			for(int i = 0; i < cantidadDeCromosomas; i++){   
+					while (flag == false)
+					{
+		                current += ruleta[i].
+		                if (current > pick){
+		                   paresDePadres[i].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
+		                    flag = true;
+		                }else{ break; }
+		    	 	}
+			}             
+		} return paresDePadres;
+	}*/
+	
+	private void metodoDeLaRuleta() { 		//----------------------------------------------RULETA AUGUSTO
+		System.out.println();
+		paresDePadres = new Cromosoma[cantidadDeCromosomas];
+		double random;
+		System.out.println("---------RULETA-------------");
+		for(int i=0;i<cantidadDeCromosomas;i++)
+		{
+		
+			double inferior=0;
+			double superior=valoresEnRuleta[0].getValorFitness();
+			int posicion=0;
+			boolean p=true;
+			random = Math.random();
+		
+		System.out.println("RANDOM: "+random +"  VS RULETA:  "+valoresEnRuleta[i].getValorFitness());
+		
+			while (p)
+				
+			{
+				
+				
+			if(random>inferior && random<superior)
+			{
+				paresDePadres[i]=valoresEnRuleta[posicion];
+				
+				//paresDePadres[i].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
+				p=false;
+			}
+			else
+			{
+				if(superior<=1)
+				{
+				inferior=superior;
+				superior=superior+valoresEnRuleta[posicion+1].getValorFitness();
+				
+				
+				}
+			}
+			
+			if(p)
+			{
+				
+				posicion++;
+				
+			}
+			}
+					}
+		
+	}
+
 
 }

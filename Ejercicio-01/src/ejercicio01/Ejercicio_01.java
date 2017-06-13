@@ -15,7 +15,7 @@ public class Ejercicio_01 {
 		//Variables auxiliares
 		Scanner scan = new Scanner(System.in);
 		
-		@SuppressWarnings("unused")
+		
 		boolean elitismo = false;
 		
 		//Variables para el desarrollo del programa
@@ -46,10 +46,11 @@ public class Ejercicio_01 {
 		System.out.println("    Mutacion: " + Mutacion);
 		
 		//Preguntar si desea realizarla con elitismo
-		System.out.print("Â¿Desea realizar con Elitismo? (S/N): ");
+		System.out.print("¿Desea realizar con Elitismo? (S/N): ");
 		String realizaConElitismo = scan.next();
 		if (realizaConElitismo.equals("S") || realizaConElitismo.equals("s")){
 			elitismo = true;
+			Poblacion.setElitismo(elitismo);
 		}
 
 		
@@ -73,7 +74,7 @@ public class Ejercicio_01 {
 			
 		
 		//Preguntar si desea emitir informe
-		System.out.println("Â¿Que desea imprimir? ");
+		System.out.println("¿Que desea imprimir? ");
 		System.out.println("1 - Imprimir en consola");
 		System.out.println("2 - Imprimir excel");
 		System.out.println("3 - Imprimir ambas");
