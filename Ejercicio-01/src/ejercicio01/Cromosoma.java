@@ -10,7 +10,7 @@ public class Cromosoma implements Comparable<Cromosoma> {
 	private double valorFuncionObjetivo;
 	private String cromosoma;
 	private double valorFitness;
-	
+//	
 	public int[] getArrayDeGenes() {
 		return arrayDeGenes;
 	}

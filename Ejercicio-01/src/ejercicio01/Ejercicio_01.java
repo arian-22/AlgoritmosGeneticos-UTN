@@ -44,7 +44,7 @@ public class Ejercicio_01 {
 		System.out.println("    Cant. iteraciones: " + cantidadDeCiclos);
 		System.out.println("    Crossover: " + Crossover);
 		System.out.println("    Mutacion: " + Mutacion);
-		
+	//	
 		//Preguntar si desea realizarla con elitismo
 		System.out.print("¿Desea realizar con Elitismo? (S/N): ");
 		String realizaConElitismo = scan.next();
