@@ -207,7 +207,7 @@ public class Poblacion {
 		}
 		return s;
 	}
-
+//.
 	private void Crossover(Cromosoma c1, Cromosoma c2, int i) {
 		int nroAzar = rnd .nextInt(29);
 		Cromosoma crom1 = new Cromosoma();
