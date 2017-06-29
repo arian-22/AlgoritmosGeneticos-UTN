@@ -11,7 +11,7 @@ public class Cromosoma implements Comparable<Cromosoma> {
 	private Random rnd = new Random();
 	
 	Cromosoma(){
-		
+		System.out.println();
 	}
 	
 	
