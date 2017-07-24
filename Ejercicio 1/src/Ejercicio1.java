@@ -32,7 +32,7 @@ public class Ejercicio1 {
                 "Funcion Objetivo", "Funcion Fitness" };
 		
 		/*
-		 * Programa principal
+		  Programa principal
 		 * */
 		
 		//Creacion de la poblacion inicial.
