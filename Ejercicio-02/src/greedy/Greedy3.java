@@ -2,28 +2,20 @@ package greedy;
 
 import java.util.*;
  
-public class Greedy10 {
+public class Greedy3 {
     static Vector<Elemento> almacen = new Vector<Elemento>();
     static Vector<Elemento> mochila = new Vector<Elemento>();
-    final static double  pesoMaximo=4200;
+    final static double  pesoMaximo=3000;
  
-    //public Greedy10(int pm) {
-       
-    //}
- 
+     
     
        
+    
     public static void cargarDatos() {
-        almacen.add(new Elemento(150,20));
-        almacen.add(new Elemento(325, 50));
-        almacen.add(new Elemento( 600, 50));
-        almacen.add(new Elemento( 805,  36));
-        almacen.add(new Elemento(430,  25));
-        almacen.add(new Elemento( 1200,  64));
-        almacen.add(new Elemento( 770,  54));
-        almacen.add(new Elemento( 60,  18));
-        almacen.add(new Elemento(930,  46));
-        almacen.add(new Elemento( 353,  28));
+        almacen.add(new Elemento(1800,72));
+        almacen.add(new Elemento(600, 36));
+        almacen.add(new Elemento( 1200, 60));
+        
         
    }
  
@@ -42,7 +34,6 @@ public class Greedy10 {
     }
  
     public static void main(String[] args) {
-        
     	long time_start = System.currentTimeMillis();
         cargarDatos();
         resolverProblema();

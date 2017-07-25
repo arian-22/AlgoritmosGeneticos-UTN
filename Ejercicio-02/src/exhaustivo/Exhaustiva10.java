@@ -1,5 +1,4 @@
-
-
+package exhaustivo;
 
 public class Exhaustiva10 {
 

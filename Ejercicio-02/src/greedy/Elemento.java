@@ -1,3 +1,5 @@
+package greedy;
+
 class Elemento {
     String nombre;
     double valor;
