@@ -1,11 +1,12 @@
-package exhaustivo;
 
 
-public class Objeto {
+
+public class Exhaustiva10 {
 
 
 	public static void main(String[] args) {
 		
+		long time_start = System.currentTimeMillis();
 		int objetos[][] = new int[10][3];
 		int vec[] =new int[10];
 		int maxvec[] = new int[10];
@@ -82,17 +83,22 @@ public class Objeto {
 		System.out.println("La mejor combinacion de objetos en la mochila es: \n ");
 
 		for (a=0;a<10;a++){
-			System.out.println("Maximo: "+maxvec[a]);
+			System.out.println("valor #: "+(a+1) +"  " +maxvec[a]);
 		}
 
-		System.out.println("\n\nTomando los primeros seis objetos, el octavo y el decimo, con un volumen "
+		System.out.println("\n\n con un volumen "
 				+ "total de " +maxvol+ "cm cubicos \n y un valor total de " +maxp+ " pesos. ");
-		System.out.println("Fin");
-
+		
+long time_end = System.currentTimeMillis();
+		
+		System.out.println("-------------------------------------------------------");
+		System.out.println();
+		System.out.println();
+		System.out.println(">> Tiempo de duracion del proceso: "+ ( time_end - time_start ) +" milisegundos.");
+		
 		
 	}
 	
 
 }
-
 
