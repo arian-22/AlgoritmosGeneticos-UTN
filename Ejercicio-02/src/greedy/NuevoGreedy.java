@@ -74,9 +74,10 @@ public class NuevoGreedy{
 				System.out.println("   --> Valor: $" + tmp.getValor());
 				System.out.println("   --> Relacion: " + tmp.getRelacion());
 	    	}
+			System.out.println();
+			System.out.println("*** Peso actual de la mochila: " + pesoMochila);
+			System.out.println();
 			
-			System.out.println("*_* Peso actual de la mochila: " + pesoMochila);
-		
 		    posicion++;
 		}
 		       
