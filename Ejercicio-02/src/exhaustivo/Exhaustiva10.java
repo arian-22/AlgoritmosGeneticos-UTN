@@ -82,14 +82,23 @@ public class Exhaustiva10 {
 		System.out.println("La mejor combinacion de objetos en la mochila es: \n ");
 
 		for (a=0;a<10;a++){
-			System.out.println("valor #: "+(a+1) +"  " +maxvec[a]);
+			System.out.println("Objeto #"+(a+1));
+			System.out.println("   --> Volumen: "+ objetos[a][1]+" cm cubicos");
+			System.out.println("   --> Valor: $" + objetos[a][2]);
+			System.out.print("   --> ¿Está en la mochila? ");
+			if(maxvec[a] == 1) {
+				System.out.println("Si");
+			}else {
+				System.out.println("No");
+			}
 		}
-
-		System.out.println("\n\n con un volumen "
-				+ "total de " +maxvol+ "cm cubicos \n y un valor total de " +maxp+ " pesos. ");
+		System.out.println();
+		System.out.println("# Datos de la mochila:");
+		System.out.println("   Volumen total: " +maxvol+ "cm cubicos.");
+		System.out.println("   Valor total: $" +maxp);
 		
-long time_end = System.currentTimeMillis();
-		
+		long time_end = System.currentTimeMillis();
+		System.out.println();
 		System.out.println("-------------------------------------------------------");
 		System.out.println();
 		System.out.println();
