@@ -94,7 +94,7 @@ public class Exhaustiva10 {
 		}
 		System.out.println();
 		System.out.println("# Datos de la mochila:");
-		System.out.println("   Volumen total: " +maxvol+ "cm cubicos.");
+		System.out.println("   Volumen total: " +maxvol+ " cm cubicos.");
 		System.out.println("   Valor total: $" +maxp);
 		
 		long time_end = System.currentTimeMillis();

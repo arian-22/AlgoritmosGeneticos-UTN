@@ -2,8 +2,6 @@ package greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class NuevoGreedy{
@@ -55,6 +53,8 @@ public class NuevoGreedy{
 		
 	    //Validacion y llenado de mochila
 		int posicion = 0;
+		int contIn = 0;
+		int contOut = 0;
 		while((pesoMochila <= pesoMaximo) && (posicion < cantElementos)) { 
 			
 			Elemento tmp = new Elemento(almacen[posicion].getPeso(), almacen[posicion].getValor());
@@ -68,11 +68,13 @@ public class NuevoGreedy{
 	            mochila.add(tmp);
 	            acum = acum + tmp.getValor();
 	            pesoMochila += tmp.getPeso();
+	            contIn++;
 	    	}else {
-	    		System.out.println("##### - El objeto en la pocision #"+ (posicion+1) + " excede el peso.");
+	    		System.out.println("### - El objeto en la pocision #"+ (posicion+1) + " excede el peso - XXX");
 	    		System.out.println("   --> Volumen: "+ tmp.getPeso() +" cm cubicos.");
 				System.out.println("   --> Valor: $" + tmp.getValor());
 				System.out.println("   --> Relacion: " + tmp.getRelacion());
+				contOut++;
 	    	}
 			System.out.println();
 			System.out.println("*** Peso actual de la mochila: " + pesoMochila);
@@ -87,6 +89,7 @@ public class NuevoGreedy{
 		//Imprimir resultado		
 		System.out.println();
 		System.out.println("# Datos de la mochila:");
+		System.out.println("   Cantidad de elementos incluidos: " + contIn + " | Cantidad de elementos excluidos: " + contOut);
 		System.out.println("   Volumen total: " +pesoMochila+ " cm cubicos.");
 		System.out.println("   Valor total: $" +acum);
 		
@@ -99,20 +102,20 @@ public class NuevoGreedy{
 	//Cargar datos de los elementos.
 	public static void cargarDatos(int cant) {
 		if(cant == 1) {
-			almacen[0] = (new Elemento(150,20));
+			almacen[0] = (new Elemento(150, 20));
 			almacen[1] = (new Elemento(325, 40));
-			almacen[2] = (new Elemento( 600, 50));
-			almacen[3] = (new Elemento( 805,  36));
-			almacen[4] = (new Elemento(430,  25));
-			almacen[5] = (new Elemento( 1200,  64));
-			almacen[6] = (new Elemento( 770,  54));
-			almacen[7] = (new Elemento( 60,  18));
-			almacen[8] = (new Elemento(930,  46));
-			almacen[9] = (new Elemento( 353,  28));				
+			almacen[2] = (new Elemento(600, 50));
+			almacen[3] = (new Elemento(805, 36));
+			almacen[4] = (new Elemento(430, 25));
+			almacen[5] = (new Elemento(1200, 64));
+			almacen[6] = (new Elemento(770, 54));
+			almacen[7] = (new Elemento(60, 18));
+			almacen[8] = (new Elemento(930, 46));
+			almacen[9] = (new Elemento(353, 28));				
 		}else {
 			almacen[0] = (new Elemento(1800,72));
 		    almacen[1] = (new Elemento(600, 36));
-		    almacen[2] = (new Elemento( 1200, 60));
+		    almacen[2] = (new Elemento(1200, 60));
 		}
 	}
 }
