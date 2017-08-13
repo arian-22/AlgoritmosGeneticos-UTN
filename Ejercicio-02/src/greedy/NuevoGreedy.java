@@ -49,27 +49,34 @@ public class NuevoGreedy{
 		System.out.println();
 		
 		Arrays.sort(almacen);
-		for(int i = 0 ; i < cantElementos ; i++) {
+		/*for(int i = 0 ; i < cantElementos ; i++) {
 			System.out.println("#"+ i + " - " + almacen[i].getRelacion());
-		}
+		}*/
 		
 	    //Validacion y llenado de mochila
 		int posicion = 0;
 		while((pesoMochila <= pesoMaximo) && (posicion < cantElementos)) { 
 			
 			Elemento tmp = new Elemento(almacen[posicion].getPeso(), almacen[posicion].getValor());
+			
+			if((pesoMochila + tmp.getPeso()) <= pesoMaximo) {  		    		
+	    		System.out.println("Objeto entrante a la mochila");
+				System.out.println("   --> Volumen: "+ tmp.getPeso() +" cm cubicos.");
+				System.out.println("   --> Valor: $" + tmp.getValor());
+				System.out.println("   --> Relacion: " + tmp.getRelacion());
+				
+	            mochila.add(tmp);
+	            acum = acum + tmp.getValor();
+	            pesoMochila += tmp.getPeso();
+	    	}else {
+	    		System.out.println("##### - El objeto en la pocision #"+ (posicion+1) + " excede el peso.");
+	    		System.out.println("   --> Volumen: "+ tmp.getPeso() +" cm cubicos.");
+				System.out.println("   --> Valor: $" + tmp.getValor());
+				System.out.println("   --> Relacion: " + tmp.getRelacion());
+	    	}
+			
+			System.out.println("*_* Peso actual de la mochila: " + pesoMochila);
 		
-			for(int r = 0; r < cantElementos ; r++){
-		    	if((pesoMochila + tmp.getPeso()) <= pesoMaximo) {  		    		
-		    		System.out.println("Objeto entrante a la mochila");
-					System.out.println("   --> Volumen: "+ tmp.getPeso() +" cm cubicos.");
-					System.out.println("   --> Valor: $" + tmp.getValor());
-					
-		            mochila.add(tmp);
-		            acum = acum + tmp.getValor();
-		            pesoMochila += tmp.getPeso();
-		    	}
-		     }
 		    posicion++;
 		}
 		       
