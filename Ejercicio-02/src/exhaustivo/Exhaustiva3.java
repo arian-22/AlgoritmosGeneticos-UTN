@@ -17,7 +17,7 @@ public class Exhaustiva3 {
 			objetos[2][0]= 3; objetos[2][1]= 1200;objetos[2][2]= 60;
 			
 			max=3000;
-
+			
 			for(i=0;i<2;i++){
 				for(j=0;j<2;j++){
 					for(k=0;k<2;k++){
@@ -58,7 +58,7 @@ public class Exhaustiva3 {
 				System.out.println("Objeto #"+(a+1));
 				System.out.println("   --> Volumen: "+ objetos[a][1]+" cm cubicos");
 				System.out.println("   --> Valor: $" + objetos[a][2]);
-				System.out.print("   --> ¿Está en la mochila? ");
+				System.out.print("   --> �Esta en la mochila? ");
 				if(maxvec[a] == 1) {
 					System.out.println("Si");
 				}else {

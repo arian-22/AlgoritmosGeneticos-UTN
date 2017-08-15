@@ -42,7 +42,7 @@ public class Elemento implements Comparable<Elemento>{
     
         valor = v;
         peso  = p;
-        relacion = p/v;
+        relacion = v/p;
     }
     
     public String toString() {
@@ -51,10 +51,9 @@ public class Elemento implements Comparable<Elemento>{
     
     public double relacion(){
     	
-    	return (this.peso/this.valor);
+    	return (this.valor/this.peso);
     }
     
-    @Override
     public int compareTo(Elemento o) {
         if (relacion > o.relacion) {
             return -1;

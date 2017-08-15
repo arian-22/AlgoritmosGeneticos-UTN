@@ -18,7 +18,7 @@ public class NuevoGreedy{
 		
 		long time_start = System.currentTimeMillis();
 		
-		System.out.println("¿Cual desea ejecutar?");
+		System.out.println("�Cual desea ejecutar?");
 		System.out.println("1 - Greedy con 10 elementos");
 		System.out.println("2 - Greedy con 3 elementos");
 		System.out.print("Opcion: ");
@@ -43,20 +43,21 @@ public class NuevoGreedy{
 		System.out.println();
 		System.out.println("Opcion elejida: " + op);
 		System.out.println("Cantidad elementos: " + cantElementos);
-		System.out.println("Peso máximo: " + pesoMaximo);
+		System.out.println("Peso maximo: " + pesoMaximo);
 		System.out.println();
 		
 		Arrays.sort(almacen);
-		/*for(int i = 0 ; i < cantElementos ; i++) {
+		for(int i = 0 ; i < cantElementos ; i++) {
 			System.out.println("#"+ i + " - " + almacen[i].getRelacion());
-		}*/
+		}
 		
 	    //Validacion y llenado de mochila
 		int posicion = 0;
 		int contIn = 0;
 		int contOut = 0;
+		int b=0;
 		while((pesoMochila <= pesoMaximo) && (posicion < cantElementos)) { 
-			
+		
 			Elemento tmp = new Elemento(almacen[posicion].getPeso(), almacen[posicion].getValor());
 			
 			if((pesoMochila + tmp.getPeso()) <= pesoMaximo) {  		    		
@@ -75,12 +76,14 @@ public class NuevoGreedy{
 				System.out.println("   --> Valor: $" + tmp.getValor());
 				System.out.println("   --> Relacion: " + tmp.getRelacion());
 				contOut++;
+				b=1;//para volver a correr todo y agregar un repetido
 	    	}
 			System.out.println();
 			System.out.println("*** Peso actual de la mochila: " + pesoMochila);
 			System.out.println();
 			
 		    posicion++;
+		    if(b==1 && pesoMochila<pesoMaximo){posicion=0; b=0;}
 		}
 		       
 		
