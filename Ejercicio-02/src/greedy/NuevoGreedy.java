@@ -116,7 +116,7 @@ public class NuevoGreedy{
 			almacen[8] = (new Elemento(930, 46));
 			almacen[9] = (new Elemento(353, 28));				
 		}else {
-			almacen[0] = (new Elemento(1800,7200));
+			almacen[0] = (new Elemento(1800,72));
 		    almacen[1] = (new Elemento(600, 36));
 		    almacen[2] = (new Elemento(1200, 60));
 		}
