@@ -1,7 +1,7 @@
 # AlgoritmosGeneticos-UTN
-Repositorio para almacenar los ejercicios de práctica que hagamos en la materia Algoritmos Genéticos.
+**Repositorio para almacenar los ejercicios de práctica que hagamos en la materia Algoritmos Genéticos.**
 
-## Ejercicio 01 
+## [Ejercicio 01](./Ejercicio-01)
 Ejercicio de cromosomas y poblaciones inicial.
 
 ```bash
