@@ -8,7 +8,7 @@ Ejercicio de cromosomas y poblaciones inicial.
 Fecha de finalización: Junio 2017
 ```
 
-## Ejercicio 02
+## [Ejercicio 02](./Ejercicio-02)
 Problema de la Mochila.
 Realizado con método exhaustivo y greedy.
 
@@ -16,7 +16,7 @@ Realizado con método exhaustivo y greedy.
 Fecha de finalización: 08 de Agosto 2017
 ```
 
-## Ejercicio 03
+## [Ejercicio 03](./Ejercicio-03)
 Problema del Viajante
 Realizado con método exhaustivo, heurística, y algoritmos genéticos.
 
