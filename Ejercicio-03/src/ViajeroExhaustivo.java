@@ -22,26 +22,27 @@ public class ViajeroExhaustivo {
 		ciudades[posicion].setVisitado();
 		int distancia=0;
 		int cont=0;
-		
+		System.out.println("asd "+ ciudades[posicion].getDistancias(0).getDistancia()+""+ciudades[posicion].getVisitado());
 		do
 		{
-			String proxima=new String();
+			int cont2=0;
 			int masCercano=20000;
-			for(int k=0;k<23;k++)
+			do
 			{
-				if( ciudades[posicion].getDistancias(k).getDistancia()<masCercano &&ciudades[posicion].getVisitado()==0)
+				if( ciudades[posicion].getDistancias(cont2).getDistancia()<masCercano && ciudades[posicion].getVisitado()==0)
 				{
 					System.out.println("entre al if");//no se xq no entra aca
-					masCercano=ciudades[posicion].getDistancias(k).getDistancia();
+					masCercano=ciudades[posicion].getDistancias(cont2).getDistancia();
 					
-					entradaTeclado=ciudades[posicion].getDistancias(k).getCiudadDestino();
+					entradaTeclado=ciudades[posicion].getDistancias(cont2).getCiudadDestino();
 				}
+				cont2++;
+			}while (cont2<22);
 			distancia=distancia+masCercano;
 			cont++;
-			System.out.println("la ciudad numero "+cont+" visitada, fue"+proxima );
+			System.out.println("la ciudad numero "+cont+" visitada, fue"+entradaTeclado );
 			posicion=busquedaCiudad(entradaTeclado,ciudades);
 			ciudades[posicion].setVisitado();
-			}
 			
 		}while (cont<23);
 		System.out.println("la distancia total recorrida fue: "+distancia);
