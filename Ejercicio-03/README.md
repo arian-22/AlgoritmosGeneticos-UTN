@@ -1,5 +1,5 @@
 # Ejercicio 03
-Problema del Viajante
+Problema de la Mochila
 Realizado con método exhaustivo, heurística, y algoritmos genéticos.
 
 ```bash
