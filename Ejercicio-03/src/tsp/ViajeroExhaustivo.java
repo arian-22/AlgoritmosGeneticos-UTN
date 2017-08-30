@@ -30,6 +30,7 @@ public class ViajeroExhaustivo {
 		System.out.println(posicion);
 		System.out.println(ciudades[posicion].getDistancias().length);
 		int cont=0;
+		String ult="";
 		do
 			{
 				int masCercano=20000;
@@ -52,17 +53,28 @@ public class ViajeroExhaustivo {
 					
 				}
 				System.out.println("La ciudad "+(cont+1)+" visitada fue "+ entradaTeclado + ", que se encuentra a "+masCercano);
+				
+				cont++;
+				if(cont==22)
+				{
+					ult=entradaTeclado;
+				}
 				distancia=distancia+masCercano;
+				System.out.println("distancia parcial: "+distancia);
+				
 				posicion=busquedaCiudad(entradaTeclado,ciudades);
 				ciudades[posicion].setVisitado();
 				System.out.println("-------------------------------------------------------------");
-				cont++;
+				
+				
 			}while (cont<22);
 		for(int i=0;i<22;i++)
 		{	
-			
-			if (ciudades[posicion].dameUno(i).getCiudadDestino().equals(ini))
+			int vueltaACasa=busquedaCiudad(ult,ciudades);
+			if (ciudades[vueltaACasa].dameUno(i).getCiudadDestino().equals(ini))
 			{
+				System.out.println(ciudades[posicion].dameUno(i).getCiudadOrigen());
+				System.out.println(ini);
 				distancia=distancia+ciudades[posicion].dameUno(i).getDistancia();
 			}
 		}
@@ -72,6 +84,16 @@ public class ViajeroExhaustivo {
 				
 			
 		
+	}
+	private static int busquedaCiudad(int id, Ciudad[] ciudades)
+	{
+		int posicion=0;
+		for (int i=0;i<ciudades.length;i++)
+		{
+			if(id==ciudades[i].getId())
+				posicion=i;
+		}
+		return posicion;
 	}
 	private static int busquedaCiudad(String vieja,Ciudad[] ciudades)
 	{
