@@ -7,7 +7,7 @@
 Ejercicio de cromosomas y poblaciones inicial.
 
 ```bash
-Fecha de finalizaci贸n: Junio 2017
+Fecha de finalizaci脙鲁n: Junio 2017
 ```
 
 ### [Ejercicio 02](./Ejercicio-02)
@@ -25,16 +25,17 @@ Realizado con m茅todo exhaustivo, heur铆stica, y algoritmos gen茅ticos.
 ```bash
 Fecha de finalizaci贸n: 12 de Septiembre 2017
 ```
+
 ### [Ejercicio 04](./Ejercicio-04)
 Trabajo Fractales.
 Dividir lineas de a un 1/3 recursivamente.
 
 ```bash
-Fecha de finalizaci贸n: despues del 3
+Fecha de finalizaci贸n: despues del Ejercicio 03
 ```
 
-## Trabajo de Investigaci髇
-Tema: Computaci髇 con Membranas, ADN y Cu醤tica.
+## Trabajo de Investigaci贸n
+Tema: Computaci贸n con Membranas, ADN y Cu谩ntica.
 
 ```bash
 Fecha de finalizaci贸n: 12 de Septiembre 2017
