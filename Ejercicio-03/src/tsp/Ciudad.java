@@ -4,7 +4,8 @@ public class Ciudad {
 	private String nombre;
 	private int id;
 	private CiudadesDistancias[] distanciasC=new CiudadesDistancias[22];
-	private int visitado=0;
+	private boolean visitado=false;
+	private boolean inicial=false;
 	Ciudad(int idd, String nom)
 	{
 		nombre=nom;
@@ -23,19 +24,31 @@ public class Ciudad {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public CiudadesDistancias getDistancias(int i) {
+	public CiudadesDistancias dameUno(int i)
+	{
 		return distanciasC[i];
+	}
+	public CiudadesDistancias[] getDistancias() {
+		return distanciasC;
 	}
 	public void setDistancias(CiudadesDistancias[] distancias) {
 		this.distanciasC = distancias;
 	}
-	public int getVisitado()
+	public boolean getVisitado()
 	{
 		return visitado;
 	}
 	public void setVisitado()
 	{
-		this.visitado=1;
+		this.visitado=true;
+	}
+	public void setInicial()
+	{
+		this.inicial=true;
+	}
+	public boolean getInicial()
+	{
+		return inicial;
 	}
 	
 }

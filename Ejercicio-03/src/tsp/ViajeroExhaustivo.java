@@ -19,39 +19,54 @@ public class ViajeroExhaustivo {
 		System.out.println("ingrese ciudad de inicio");
 		entradaTeclado=entradaScanner.nextLine();
 		int posicion=0;
+		ciudades[posicion].setInicial();
 		System.out.println(entradaTeclado);
 		posicion=busquedaCiudad(entradaTeclado,ciudades);
 		ciudades[posicion].setVisitado();
+		String ini=entradaTeclado;
 		//ciudades [posicion].setInicio()
 		int distancia=0;
-		int cont=0;
 		//System.out.println("asd "+ ciudades[posicion].getDistancias(0).getDistancia()+""+ciudades[posicion].getVisitado());
-		
-		
+		System.out.println(posicion);
+		System.out.println(ciudades[posicion].getDistancias().length);
+		int cont=0;
 		do
-		{System.out.println("contador: "+cont);System.out.println("posicion: "+posicion);
-			System.out.println("asd "+ ciudades[posicion].getDistancias(cont).getDistancia()+""+ciudades[posicion].getVisitado());
-			int cont2=0;
-			int masCercano=20000;
-			do
-			{System.out.println("numerito :"+ciudades[posicion].getDistancias(cont2).getDistancia()+" mas cerca "+masCercano+" ya pasaste 1=si ?"+ciudades[posicion+1].getVisitado());
-				if( (ciudades[posicion].getDistancias(cont2).getDistancia()<masCercano )&& (ciudades[posicion+1].getVisitado()==0))
+			{
+				int masCercano=20000;
+				System.out.println("la ciudad de origen es "+ciudades[posicion].getNombre());
+
+				for(int k=0;k<22;k++)
 				{
-					System.out.println("entre al if");//no se xq no entra aca
-					masCercano=ciudades[posicion].getDistancias(cont2).getDistancia();
 					
-					entradaTeclado=ciudades[posicion].getDistancias(cont2).getCiudadDestino();
+						
+						int destino=busquedaCiudad(ciudades[posicion].dameUno(k).getCiudadDestino(),ciudades);
+						//System.out.println("destino: "+destino);
+						if(ciudades[posicion].dameUno(k).getDistancia()<masCercano && ciudades[destino].getVisitado()==false)
+						{
+							masCercano=ciudades[posicion].dameUno(k).getDistancia();
+							entradaTeclado=ciudades[destino].getNombre();
+							//System.out.println("entre al if");
+							//System.out.println("el posible destino es: "+entradaTeclado);
+						}
+					
+					
 				}
-				cont2++;
-			}while (cont2<22);
-			distancia=distancia+masCercano;
-			cont++;
-			System.out.println("la ciudad numero "+cont+" visitada, fue "+entradaTeclado );
-			posicion=busquedaCiudad(entradaTeclado,ciudades);
-			ciudades[posicion].setVisitado();
+				System.out.println("La ciudad "+(cont+1)+" visitada fue "+ entradaTeclado + ", que se encuentra a "+masCercano);
+				distancia=distancia+masCercano;
+				posicion=busquedaCiudad(entradaTeclado,ciudades);
+				ciudades[posicion].setVisitado();
+				System.out.println("-------------------------------------------------------------");
+				cont++;
+			}while (cont<22);
+		for(int i=0;i<22;i++)
+		{	
 			
-		}while (cont<23);
-		System.out.println("la distancia total recorrida fue: "+distancia);
+			if (ciudades[posicion].dameUno(i).getCiudadDestino().equals(ini))
+			{
+				distancia=distancia+ciudades[posicion].dameUno(i).getDistancia();
+			}
+		}
+		System.out.println("la distancia total recorrido fue: "+distancia);
 				
 				
 				
@@ -118,7 +133,7 @@ public class ViajeroExhaustivo {
 		ciuds[12]=new Ciudad(13,"La Rioja");
 		ciuds[13]=new Ciudad(14,"San Juan");
 		ciuds[14]=new Ciudad(15,"San Luis");
-		ciuds[15]=new Ciudad(16,"Catamarca ");
+		ciuds[15]=new Ciudad(16,"Catamarca");
 		ciuds[16]=new Ciudad(17,"Mendoza");
 		ciuds[17]=new Ciudad(18,"Santa Rosa");
 		ciuds[18]=new Ciudad(19,"Neuquén");
@@ -607,7 +622,7 @@ public class ViajeroExhaustivo {
 		dist20[20]=new CiudadesDistancias("Viedma","Rio Gallegos",1180);
 		dist20[21]=new CiudadesDistancias("Viedma","Ushuaia",1773);
 		ciuds[19].setDistancias(dist20);
-		//cargar distancias rio rawson
+		//cargar distancias  rawson
 		dist21[0]=new CiudadesDistancias("Rawson","Buenos Aires",1455);
 		dist21[1]=new CiudadesDistancias("Rawson","Salta",2352);
 		dist21[2]=new CiudadesDistancias("Rawson","San M de Tucuman",2045);
@@ -623,6 +638,7 @@ public class ViajeroExhaustivo {
 		dist21[12]=new CiudadesDistancias("Rawson","San Juan",1680);
 		dist21[13]=new CiudadesDistancias("Rawson","San Luis",1360);
 		dist21[14]=new CiudadesDistancias("Rawson","Catamarca",1895);
+		dist21[15]=new CiudadesDistancias("Rawson","Mendoza",495);
 		dist21[16]=new CiudadesDistancias("Rawson","Santa Rosa",855);
 		dist21[17]=new CiudadesDistancias("Rawson","Neuquén",750);
 		dist21[18]=new CiudadesDistancias("Rawson","Viedma",495);
@@ -677,7 +693,7 @@ public class ViajeroExhaustivo {
 		dist23[18]=new CiudadesDistancias("Ushuaia","Viedma",2228);
 		dist23[19]=new CiudadesDistancias("Ushuaia","Rawson",1773);
 		
-		dist23[21]=new CiudadesDistancias("Rio Gallegos","Ushuaia",593);
+		dist23[21]=new CiudadesDistancias("Ushuaia","Rio Gallegos",593);
 		ciuds[22].setDistancias(dist23);
 		
 		
