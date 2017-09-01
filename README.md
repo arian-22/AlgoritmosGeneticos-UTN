@@ -7,7 +7,7 @@
 Ejercicio de cromosomas y poblaciones inicial.
 
 ```bash
-Fecha de finalizaciÃ³n: Junio 2017
+Fecha de finalización: Junio 2017
 ```
 
 ### [Ejercicio 02](./Ejercicio-02)
