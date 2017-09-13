@@ -29,7 +29,7 @@ public class Fractales extends Applet {
 	 if(i<=0){
 		 g.drawLine((int)xp12,(int)(yp12+10),(int)xp22,(int)(yp22+10));
 	 }else{
-		 paintRecursivo(g,(i-1),xp12,yp12,dx1,dx2);
+		// paintRecursivo(g,(i-1),xp12,yp12,dx1,dx2);
 	 }
 /*
  double dx=(xp22-xp12)/3.;
