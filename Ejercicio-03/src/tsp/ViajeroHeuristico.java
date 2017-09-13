@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.io.*;
 
-public class ViajeroExhaustivo {
+public class ViajeroHeuristico {
 	
 
 	public static void main(String[] args) 
@@ -12,25 +12,25 @@ public class ViajeroExhaustivo {
 		// TODO Auto-generated method stub
 		Ciudad[] ciudades=new Ciudad[23];
 		cargaDatos(ciudades);
-		String entradaTeclado="";
+		int entradaTeclado=0;
 		
 		Scanner entradaScanner= new Scanner(System.in);
 		
 		System.out.println("ingrese ciudad de inicio");
-		entradaTeclado=entradaScanner.nextLine();
+		entradaTeclado=entradaScanner.nextInt();
 		int posicion=0;
 		ciudades[posicion].setInicial();
 		System.out.println(entradaTeclado);
 		posicion=busquedaCiudad(entradaTeclado,ciudades);
 		ciudades[posicion].setVisitado();
-		String ini=entradaTeclado;
+		int ini=entradaTeclado;
 		//ciudades [posicion].setInicio()
 		int distancia=0;
 		//System.out.println("asd "+ ciudades[posicion].getDistancias(0).getDistancia()+""+ciudades[posicion].getVisitado());
 		System.out.println(posicion);
 		System.out.println(ciudades[posicion].getDistancias().length);
 		int cont=0;
-		String ult="";
+		int ult=0;
 		do
 			{
 				int masCercano=20000;
@@ -45,7 +45,9 @@ public class ViajeroExhaustivo {
 						if(ciudades[posicion].dameUno(k).getDistancia()<masCercano && ciudades[destino].getVisitado()==false)
 						{
 							masCercano=ciudades[posicion].dameUno(k).getDistancia();
-							entradaTeclado=ciudades[destino].getNombre();
+							entradaTeclado=ciudades[destino].getId();
+							
+							
 							//System.out.println("entre al if");
 							//System.out.println("el posible destino es: "+entradaTeclado);
 						}
@@ -55,10 +57,7 @@ public class ViajeroExhaustivo {
 				System.out.println("La ciudad "+(cont+1)+" visitada fue "+ entradaTeclado + ", que se encuentra a "+masCercano);
 				
 				cont++;
-				if(cont==22)
-				{
-					ult=entradaTeclado;
-				}
+				
 				distancia=distancia+masCercano;
 				System.out.println("distancia parcial: "+distancia);
 				
@@ -70,7 +69,7 @@ public class ViajeroExhaustivo {
 			}while (cont<22);
 		for(int i=0;i<22;i++)
 		{	
-			int vueltaACasa=busquedaCiudad(ult,ciudades);
+			int vueltaACasa=busquedaCiudad(entradaTeclado,ciudades);
 			if (ciudades[vueltaACasa].dameUno(i).getCiudadDestino().equals(ini))
 			{
 				System.out.println(ciudades[posicion].dameUno(i).getCiudadOrigen());
