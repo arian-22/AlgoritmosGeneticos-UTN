@@ -1,8 +1,6 @@
 package tsp;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.io.*;
 
 public class ViajeroHeuristico {
 	
@@ -14,6 +12,7 @@ public class ViajeroHeuristico {
 		cargaDatos(ciudades);
 		int entradaTeclado=0;
 		
+		@SuppressWarnings("resource")
 		Scanner entradaScanner= new Scanner(System.in);
 		
 		System.out.println("ingrese ciudad de inicio");
@@ -30,6 +29,7 @@ public class ViajeroHeuristico {
 		System.out.println(posicion);
 		System.out.println(ciudades[posicion].getDistancias().length);
 		int cont=0;
+		@SuppressWarnings("unused")
 		int ult=0;
 		do
 			{

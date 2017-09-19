@@ -1,5 +1,4 @@
 package tsp;
-import java.util.Arrays;
 public class Ciudad {
 	private String nombre;
 	private int id;

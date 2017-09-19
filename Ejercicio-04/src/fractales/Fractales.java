@@ -2,6 +2,7 @@ package fractales;
 import java.applet.Applet;
 import java.awt.Graphics;
 
+@SuppressWarnings("serial")
 public class Fractales extends Applet {
  double xp1=10;
  double yp1=20;
@@ -20,7 +21,8 @@ public class Fractales extends Applet {
  private void paintRecursivo(Graphics g, int i, double xp12, double yp12, double xp22, double yp22 ) {
 	 g.drawLine((int)xp12,(int)yp12,(int)xp22,(int)yp22);
 	 
-	 double dx = (xp22)/3;
+	 @SuppressWarnings("unused")
+	double dx = (xp22)/3;
 	 
 	 //double 
 	 
