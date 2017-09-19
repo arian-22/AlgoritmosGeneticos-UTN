@@ -33,7 +33,7 @@ public class Fractales extends Applet {
 	 }else{
 		// paintRecursivo(g,(i-1),xp12,yp12,dx1,dx2);
 	 }
-/*.
+/*...
  double dx=(xp22-xp12)/3.;
   double dy=(yp22-yp12)/3.;
 
