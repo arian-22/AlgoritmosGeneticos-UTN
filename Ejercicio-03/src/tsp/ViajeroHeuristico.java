@@ -14,6 +14,7 @@ public class ViajeroHeuristico {
 		int cont = 0;
 		int idCiudadActual = 0;
 		boolean inicioLocalizado = false;
+		String nombre="";
 		Scanner entradaScanner= new Scanner(System.in);
 		
 		System.out.print("Ingrese ciudad de inicio: ");
@@ -25,6 +26,8 @@ public class ViajeroHeuristico {
 		System.out.println();
 		
 		ciudades[posicionCiudadInArray].setVisitado();
+		Ciudad inicial=ciudades[posicionCiudadInArray];
+		
 		
 		do{
 			int distanciaMasCerca = Integer.MAX_VALUE;
@@ -39,9 +42,11 @@ public class ViajeroHeuristico {
 						(!ciudades[ciudadDestinoInArray].getVisitado())){
 					distanciaMasCerca = ciudades[posicionCiudadInArray].distanciasACiudades(k).getDistancia();
 					idCiudadActual = ciudades[ciudadDestinoInArray].getId();
+					nombre=ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino();
+					
 				}				
 			}
-			System.out.println("Se dirige a visitar la ciudad de "+ ciudades[busquedaCiudad(idCiudadActual, ciudades)].getNombre() + ", que"
+			System.out.println("Se dirige a visitar la ciudad de "+(cont+1)+ ciudades[busquedaCiudad(idCiudadActual, ciudades)].getNombre() + ", que"
 					+ " se encuentra a " + distanciaMasCerca + " km. de distancia.");
 			
 			cont++;
@@ -56,22 +61,15 @@ public class ViajeroHeuristico {
 			
 		}while(cont < 22);
 
-		int nroCiudad = 1;
-		while(!inicioLocalizado) {
-			int posicionEnArray = busquedaCiudad(nroCiudad, ciudades);
-			if(ciudades[posicionEnArray].getInicial()) {
-				int distanciaHaciaOrigen = ciudades[posicionCiudadInArray].distanciasACiudades(posicionEnArray).getDistancia();
-				System.out.println();
-				System.out.println("La ultima ciudad donde se encuentra el viajante es " + ciudades[posicionCiudadInArray].getNombre() + ". ");
-				System.out.println("Ahora va a regresar a la ciudad de " 
-						+ ciudades[posicionEnArray].getNombre() + ", que se encuentra a " 
-						+ distanciaHaciaOrigen + " km. de distancia.");
-				distanciaTotalRecorrido += distanciaHaciaOrigen;
-				inicioLocalizado = true;
-			}else {
-				nroCiudad++;
-			}
-		}
+		
+			
+			
+			int distanciaFinal=inicial.getDistancia(nombre);
+			System.out.println("distanciafinal"+distanciaFinal+nombre);
+			distanciaTotalRecorrido=distanciaTotalRecorrido+distanciaFinal;
+			
+			
+		
 		System.out.println("-------------------------------------------------------------");
 		System.out.println();
 		System.out.println("/--\\ Distancia total recorrida por el viajante fue: " + distanciaTotalRecorrido + " kilometros.");		
