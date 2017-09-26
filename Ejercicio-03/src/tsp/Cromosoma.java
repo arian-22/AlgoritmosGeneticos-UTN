@@ -42,7 +42,7 @@ public class Cromosoma {
 	public void calcularFitness(double sumatoria)
 	{
 		this.fitness=funcionObjetivo/sumatoria;
-		System.out.println(fitness);
+
 	}
 	public double getFuncionObjetivo() {
 		return funcionObjetivo;

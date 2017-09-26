@@ -63,9 +63,11 @@ public class Poblacion {
 		Random rnd=new Random();
 		Cromosoma cromosom[]=pobAnterior.getCromosomas();
 		System.out.println("el fitnees del primero es: "+cromosom[0]);
-				
+		
+		
 		for(int i=0;i<50;i++)
 		{
+			
 			double inferior=0;
 			System.out.println("el fitness adentro es: "+cromosom[0].getFitness());
 			double superior=0;
