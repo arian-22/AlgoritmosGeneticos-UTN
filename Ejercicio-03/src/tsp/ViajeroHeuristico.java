@@ -17,9 +17,12 @@ public class ViajeroHeuristico {
 			ejecutarTSPHeurisica(i);
 		}
 		System.out.println();
-		System.out.println("--------------------------");
-		System.out.print("+ Ciudad con recorrido optimo: " + mejorCiudad);
-		System.out.println(" - Distancia total: " + mejorDistancia);
+		System.out.println("****************************************************************************");
+		System.out.println("*                                                                          *");
+		System.out.print("*   --- Ciudad con recorrido optimo: " + mejorCiudad);
+		System.out.println(" - Distancia total: " + mejorDistancia + " --   *");
+		System.out.println("*                                                                          *");
+		System.out.println("****************************************************************************");
 	}
 	
 	private static void ejecutarTSPHeurisica(int nroIteracion) {
@@ -42,7 +45,8 @@ public class ViajeroHeuristico {
 		ciudades[posicionCiudadInArray].setVisitado();
 		Ciudad inicial = ciudades[posicionCiudadInArray];
 		
-		
+		System.out.println();
+		System.out.println("+ Recorrido partiendo desde <" + nombreCiudadInicio + ">");
 		do{
 			int distanciaMasCerca = Integer.MAX_VALUE;
 
@@ -56,6 +60,10 @@ public class ViajeroHeuristico {
 					nombre = ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino();
 				}				
 			}
+			System.out.println("  |");
+			System.out.println("  |--> Ciudad de "+ ciudades[busquedaCiudad(idCiudadActual, ciudades)].getNombre() 
+					+ " --> " + distanciaMasCerca + " km. de distancia.");
+			
 			
 			cont++;
 			
@@ -69,15 +77,15 @@ public class ViajeroHeuristico {
 
 		int distanciaFinal = inicial.getDistancia(nombre);
 		distanciaTotalRecorrido += distanciaFinal;
-		
-		System.out.print("+ Ciudad: " + nombreCiudadInicio);
-		System.out.println(" - Recorrido total: " + distanciaTotalRecorrido);
+		System.out.println();
+		System.out.print(".::Final " + nombreCiudadInicio);
+		System.out.println("::. Recorrido total: " + distanciaTotalRecorrido);
+		System.out.println("----------------------------------------------------");
 		
 		if(mejorDistancia > distanciaTotalRecorrido) {
 			mejorCiudad = nombreCiudadInicio;
 			mejorDistancia = distanciaTotalRecorrido;
 		}
-		
 	}
 	
 	private static void ejecutarTSPHeurisica() {

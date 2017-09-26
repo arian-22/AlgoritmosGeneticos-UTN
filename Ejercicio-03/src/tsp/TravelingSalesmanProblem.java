@@ -29,10 +29,10 @@ public class TravelingSalesmanProblem {
 				ViajeroHeuristico tspHeuristico2 = new ViajeroHeuristico(op);
 				break;
 			case 3:
-				
+				ViajeroGenetico tspGenetico = new ViajeroGenetico();
 				break;
 			case 4:
-				
+				ViajeroGenetico tspGenetico2 = new ViajeroGenetico(op);
 				break;
 			default:
 				System.out.println("Opcion incorrecta. Intente de nuevo. ");
