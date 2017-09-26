@@ -1,10 +1,12 @@
 package tsp;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Poblacion {
 	private Cromosoma cromosomas[]=new Cromosoma[50];
 	private Cromosoma padres[]=new Cromosoma[50];
 	private double sumatoriaFuncionObjetivo=0;
+	
 	public Cromosoma[] getCromosomas() {
 		return cromosomas;
 	}
@@ -56,14 +58,20 @@ public class Poblacion {
 		
 	}
 	private Cromosoma[] metodoDeLaRuleta(Poblacion pobAnterior) {
+
 		Cromosoma papas[]=new Cromosoma[50];
 		Random rnd=new Random();
 		Cromosoma cromosom[]=pobAnterior.getCromosomas();
+		System.out.println("el fitnees del primero es: "+cromosom[0]);
+		
+		
 		for(int i=0;i<50;i++)
 		{
 			
 			double inferior=0;
-			double superior=cromosom[0].getFitness();
+			System.out.println("el fitness adentro es: "+cromosom[0].getFitness());
+			double superior=0;
+			superior=cromosom[0].getFitness();
 			int posicion=0;
 			boolean p=true;
 			double random = Math.random();
@@ -103,9 +111,7 @@ public class Poblacion {
 					}
 		return papas;
 		
+
 	}
-		
-
-
 }
 

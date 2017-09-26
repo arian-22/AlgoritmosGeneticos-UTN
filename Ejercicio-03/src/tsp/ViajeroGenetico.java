@@ -25,9 +25,11 @@ public class ViajeroGenetico {
 		{
 			Poblacion nueva=new Poblacion();
 			nueva.evolucionar(poblaciones[i-1]);
+			
 			poblaciones[i]=nueva;
 			
 		}
+		
 	}
 	private static void cargaDatos(Ciudad[] ciuds) {
 			//cargar ciudades
