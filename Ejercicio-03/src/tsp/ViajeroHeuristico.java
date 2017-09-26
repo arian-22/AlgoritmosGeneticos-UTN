@@ -99,6 +99,13 @@ public class ViajeroHeuristico {
 		String nombre="";
 		Scanner entradaScanner= new Scanner(System.in);
 		
+		System.out.println();
+		System.out.println("Ciudades a seleccionar:");
+		for(int j = 0; j < ciudades.length; j++) {
+			System.out.println(" [" + ciudades[j].getId() + "] - " + ciudades[j].getNombre());
+		}
+		System.out.println();
+		
 		System.out.print("Ingrese ciudad de inicio: ");
 		entradaTeclado = entradaScanner.nextInt();
 		
