@@ -55,21 +55,15 @@ public class Ciudad {
 	public boolean getInicial()	{
 		return inicial;
 	}
-	public int getDistancia(String cd)
-	{
-		System.out.println(cd);
-		int distancia=0;
-		for (int i=0;i<22;i++)
-		{
-			if(distanciasC[i].getCiudadDestino().equals(cd))
-			{
-				System.out.println("entre al if");
+	
+	public int getDistancia(String cd){
+		int distancia = 0;
+		for (int i=0;i<22;i++){
+			if(distanciasC[i].getCiudadDestino().equals(cd)){
 				distancia=distanciasC[i].getDistancia();
-				
-			}
-				
+			}		
 		}
 		return distancia;
 	}
-	}
+}
 	

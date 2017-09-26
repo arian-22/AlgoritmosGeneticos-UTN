@@ -26,7 +26,7 @@ public class TravelingSalesmanProblem {
 				ViajeroHeuristico tspHeuristico = new ViajeroHeuristico();
 				break;
 			case 2:
-				
+				ViajeroHeuristico tspHeuristico2 = new ViajeroHeuristico(op);
 				break;
 			case 3:
 				

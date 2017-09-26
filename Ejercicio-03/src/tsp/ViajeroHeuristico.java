@@ -4,8 +4,25 @@ import java.util.Scanner;
 
 public class ViajeroHeuristico {
 	
-
+	private static String mejorCiudad = "";
+	private static int mejorDistancia = Integer.MAX_VALUE;
+	
 	public ViajeroHeuristico() {
+		ejecutarTSPHeurisica();
+		
+	}
+	
+	public ViajeroHeuristico(int opcion) {
+		for(int i = 1; i <= 23; i++) {
+			ejecutarTSPHeurisica(i);
+		}
+		System.out.println();
+		System.out.println("--------------------------");
+		System.out.print("+ Ciudad con recorrido optimo: " + mejorCiudad);
+		System.out.println(" - Distancia total: " + mejorDistancia);
+	}
+	
+	private static void ejecutarTSPHeurisica(int nroIteracion) {
 		Ciudad[] ciudades = new Ciudad[23];
 		cargaDatos(ciudades);
 		int entradaTeclado = 0;
@@ -13,7 +30,64 @@ public class ViajeroHeuristico {
 		int distanciaTotalRecorrido = 0;
 		int cont = 0;
 		int idCiudadActual = 0;
-		boolean inicioLocalizado = false;
+		String nombre="";
+		
+		
+		entradaTeclado = nroIteracion;
+		
+		posicionCiudadInArray = busquedaCiudad(entradaTeclado, ciudades);
+		ciudades[posicionCiudadInArray].setInicial(); 
+		String nombreCiudadInicio = ciudades[posicionCiudadInArray].getNombre();
+		
+		ciudades[posicionCiudadInArray].setVisitado();
+		Ciudad inicial = ciudades[posicionCiudadInArray];
+		
+		
+		do{
+			int distanciaMasCerca = Integer.MAX_VALUE;
+
+			for(int k = 0; k < 22; k++){
+				int ciudadDestinoInArray = busquedaCiudad(ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino(), ciudades);
+
+				if((ciudades[posicionCiudadInArray].distanciasACiudades(k).getDistancia() < distanciaMasCerca) && 
+						(!ciudades[ciudadDestinoInArray].getVisitado())){
+					distanciaMasCerca = ciudades[posicionCiudadInArray].distanciasACiudades(k).getDistancia();
+					idCiudadActual = ciudades[ciudadDestinoInArray].getId();
+					nombre = ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino();
+				}				
+			}
+			
+			cont++;
+			
+			distanciaTotalRecorrido += distanciaMasCerca;
+			
+			posicionCiudadInArray = busquedaCiudad(idCiudadActual, ciudades);
+			ciudades[posicionCiudadInArray].setVisitado();
+			
+			
+		}while(cont < 22);
+
+		int distanciaFinal = inicial.getDistancia(nombre);
+		distanciaTotalRecorrido += distanciaFinal;
+		
+		System.out.print("+ Ciudad: " + nombreCiudadInicio);
+		System.out.println(" - Recorrido total: " + distanciaTotalRecorrido);
+		
+		if(mejorDistancia > distanciaTotalRecorrido) {
+			mejorCiudad = nombreCiudadInicio;
+			mejorDistancia = distanciaTotalRecorrido;
+		}
+		
+	}
+	
+	private static void ejecutarTSPHeurisica() {
+		Ciudad[] ciudades = new Ciudad[23];
+		cargaDatos(ciudades);
+		int entradaTeclado = 0;
+		int posicionCiudadInArray = 0;
+		int distanciaTotalRecorrido = 0;
+		int cont = 0;
+		int idCiudadActual = 0;
 		String nombre="";
 		Scanner entradaScanner= new Scanner(System.in);
 		
@@ -22,11 +96,12 @@ public class ViajeroHeuristico {
 		
 		posicionCiudadInArray = busquedaCiudad(entradaTeclado, ciudades);
 		ciudades[posicionCiudadInArray].setInicial(); 
+		String nombreCiudadInicio = ciudades[posicionCiudadInArray].getNombre();
 		System.out.println("Ciudad de inicio igresada: " + ciudades[posicionCiudadInArray].getNombre());
 		System.out.println();
 		
 		ciudades[posicionCiudadInArray].setVisitado();
-		Ciudad inicial=ciudades[posicionCiudadInArray];
+		Ciudad inicial = ciudades[posicionCiudadInArray];
 		
 		
 		do{
@@ -42,11 +117,10 @@ public class ViajeroHeuristico {
 						(!ciudades[ciudadDestinoInArray].getVisitado())){
 					distanciaMasCerca = ciudades[posicionCiudadInArray].distanciasACiudades(k).getDistancia();
 					idCiudadActual = ciudades[ciudadDestinoInArray].getId();
-					nombre=ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino();
-					
+					nombre = ciudades[posicionCiudadInArray].distanciasACiudades(k).getCiudadDestino();
 				}				
 			}
-			System.out.println("Se dirige a visitar la ciudad de "+(cont+1)+ ciudades[busquedaCiudad(idCiudadActual, ciudades)].getNombre() + ", que"
+			System.out.println("Se dirige a visitar la ciudad de "+ ciudades[busquedaCiudad(idCiudadActual, ciudades)].getNombre() + ", que"
 					+ " se encuentra a " + distanciaMasCerca + " km. de distancia.");
 			
 			cont++;
@@ -61,17 +135,15 @@ public class ViajeroHeuristico {
 			
 		}while(cont < 22);
 
+		int distanciaFinal = inicial.getDistancia(nombre);
 		
-			
-			
-			int distanciaFinal=inicial.getDistancia(nombre);
-			System.out.println("distanciafinal"+distanciaFinal+nombre);
-			distanciaTotalRecorrido=distanciaTotalRecorrido+distanciaFinal;
-			
-			
+		System.out.println("La ultima ciudad del viajante es " + nombre + ". ");
+		System.out.println("Ahora regresara a la ciudad de " + nombreCiudadInicio + ", que"
+				+ " se encuentra a " + distanciaFinal + " km. de distancia.");
 		
 		System.out.println("-------------------------------------------------------------");
 		System.out.println();
+		distanciaTotalRecorrido += distanciaFinal;
 		System.out.println("/--\\ Distancia total recorrida por el viajante fue: " + distanciaTotalRecorrido + " kilometros.");		
 	}
 	
