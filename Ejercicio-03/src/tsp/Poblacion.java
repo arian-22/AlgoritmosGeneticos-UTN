@@ -63,8 +63,7 @@ public class Poblacion {
 		Random rnd=new Random();
 		Cromosoma cromosom[]=pobAnterior.getCromosomas();
 		System.out.println("el fitnees del primero es: "+cromosom[0]);
-		
-		
+				
 		for(int i=0;i<50;i++)
 		{
 			
