@@ -30,10 +30,9 @@ public class TravelingSalesmanProblem {
 				break;
 			case 3:
 				ViajeroGenetico tspGenetico = new ViajeroGenetico();
+				tspGenetico.ViajeroEjecucion();
 				break;
-			case 4:
-				ViajeroGenetico tspGenetico2 = new ViajeroGenetico(op);
-				break;
+			
 			default:
 				System.out.println("Opcion incorrecta. Intente de nuevo. ");
 				break;
