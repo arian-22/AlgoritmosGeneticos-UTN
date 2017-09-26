@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Cromosoma {
 	private double funcionObjetivo;
+	private double fitness;
+	
 	private Ciudad ciudades[]=new Ciudad[23];
 	public void calcularFuncionObjetivo()
 	{
@@ -30,21 +32,34 @@ public class Cromosoma {
 			
 			if(Arrays.asList(ciudades).contains(ciuds[aleatorio])==false)
 			{
-				System.out.println("entre al if");
 				this.ciudades[cont]=ciuds[aleatorio];
-				
-				System.out.println("ciudade numero: "+(cont+1)+ciudades[cont].getNombre());
-				
 				cont++;
-				
-				
-				
+								
 			}
 		 }while(cont<=22);
 		 
-			 
-		 
-		 
+	 }
+	public void calcularFitness(double sumatoria)
+	{
+		this.fitness=funcionObjetivo/sumatoria;
+		System.out.println(fitness);
 	}
-
+	public double getFuncionObjetivo() {
+		return funcionObjetivo;
+	}
+	public void setFuncionObjetivo(double funcionObjetivo) {
+		this.funcionObjetivo = funcionObjetivo;
+	}
+	public Ciudad[] getCiudades() {
+		return ciudades;
+	}
+	public void setCiudades(Ciudad[] ciudades) {
+		this.ciudades = ciudades;
+	}
+	public double getFitness() {
+		return fitness;
+	}
+	public void setFitness(double fitness) {
+		this.fitness = fitness;
+	}
 }

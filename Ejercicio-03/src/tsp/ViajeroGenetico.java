@@ -13,11 +13,21 @@ public class ViajeroGenetico {
 		
 	public void ViajeroEjecucion()
 	{
+		double probabilidadCrossover=0.75;
 		Ciudad ciudades[]=new Ciudad[23];
 		cargaDatos(ciudades);
-		int Ciclos=200;
+		int ciclos=200;
+		Poblacion poblaciones[]=new Poblacion[ciclos];
 		Poblacion poblacionInicial=new Poblacion();
 		poblacionInicial.GenerarPoblacionInicial(ciudades);
+		poblaciones[0]=poblacionInicial;
+		for(int i=1;i<ciclos;i++)
+		{
+			Poblacion nueva=new Poblacion();
+			nueva.evolucionar(poblaciones[i-1]);
+			poblaciones[i]=nueva;
+			
+		}
 	}
 	private static void cargaDatos(Ciudad[] ciuds) {
 			//cargar ciudades
