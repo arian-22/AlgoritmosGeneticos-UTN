@@ -56,6 +56,10 @@ public class Cromosoma {
 	public void setCiudades(Ciudad[] ciudades) {
 		this.ciudades = ciudades;
 	}
+	public void setUnaCiudad(int pos,Ciudad ciu)
+	{
+		this.ciudades[pos]=ciu;
+	}
 	public double getFitness() {
 		return fitness;
 	}

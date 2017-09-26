@@ -6,6 +6,8 @@ public class Poblacion {
 	private Cromosoma cromosomas[]=new Cromosoma[50];
 	private Cromosoma padres[]=new Cromosoma[50];
 	private double sumatoriaFuncionObjetivo=0;
+	private int posicionInicial=0;
+	
 	
 	public Cromosoma[] getCromosomas() {
 		return cromosomas;
@@ -53,8 +55,17 @@ public class Poblacion {
 	}
 	public void evolucionar(Poblacion pobAnterior) {
 		// TODO Auto-generated method stub
+		Random rnd=new Random();
 		Cromosoma padres[]=new Cromosoma[50];
 		padres=metodoDeLaRuleta(pobAnterior);
+		for(int i=0;i<50;i+=2)
+		{
+			double aleatorio=Math.random();
+			if(aleatorio<=0.75)
+			{
+				crossover(padres[i],padres[i+1])
+			}
+		}
 		
 	}
 	private Cromosoma[] metodoDeLaRuleta(Poblacion pobAnterior) {
@@ -113,5 +124,53 @@ public class Poblacion {
 		
 
 	}
+	
+	public void crossover (Cromosoma c1, Cromosoma c2)
+	{
+		Random rnd=new Random();
+		int nroAzar = rnd.nextInt(22);
+		System.out.println(" >>> Corta en: " + (nroAzar)+" <<<");
+		Cromosoma hijo1 = new Cromosoma();
+		Cromosoma hijo2 = new Cromosoma();
+		Cromosoma hijoaux = new Cromosoma();
+		hijoaux = hijo1;
+		
+		System.out.println("- - - - - - - - - - - -");
+		System.out.println("Cromosoma padre 1: "+c1.getCiudades());
+		System.out.println("Cromosoma padre 2: "+c2.getCiudades());
+		
+		
+		// antes del corte copia el padre en el hijo  //
+		for(int i=0; i<=nroAzar; i++){
+			hijo1.setUnaCiudad(i,c1.getCiudades()[i]);
+			hijo2.setUnaCiudad(i,c2.getCiudades()[i]);
+		}
+				
+				nroAzar++;
+				int nroAzar2=nroAzar;
+		// despues del corte reviso que no se repitan //
+		for(int i=0; 0 <23; i++)
+		{
+			if(Arrays.asList(hijo1.getCiudades()).contains(c2.getCiudades()[i])==false)
+			{
+				hijo1.setUnaCiudad(nroAzar,c2.getCiudades()[i]);
+				nroAzar++;
+			}
+			if(Arrays.asList(hijo2.getCiudades()).contains(c1.getCiudades()[i])==false)
+			{
+				hijo2.setUnaCiudad(nroAzar2,c1.getCiudades()[i]);
+				nroAzar2++;
+			};
+			
+		}int h=setUnCromosoma(hijo1);
+			
+	}
+	
+	private int setUnCromosoma(Cromosoma cromo)
+	{
+		this.cromosomas[this.posicionInicial]=cromo;
+		posicionInicial++;
+		return 1;
+		}
 }
 
