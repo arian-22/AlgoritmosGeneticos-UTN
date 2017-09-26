@@ -66,7 +66,6 @@ public class Poblacion {
 				
 		for(int i=0;i<50;i++)
 		{
-			
 			double inferior=0;
 			System.out.println("el fitness adentro es: "+cromosom[0].getFitness());
 			double superior=0;
