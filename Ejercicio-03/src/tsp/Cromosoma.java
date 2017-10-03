@@ -6,7 +6,14 @@ import java.util.List;
 public class Cromosoma {
 	private double funcionObjetivo;
 	private double fitness;
+	private double recorrido;
 	
+	public double getRecorrido() {
+		return recorrido;
+	}
+	public void setRecorrido(double recorrido) {
+		this.recorrido = recorrido;
+	}
 	private Ciudad ciudades[]=new Ciudad[23];
 	public void calcularFuncionObjetivo()
 	{
@@ -21,6 +28,7 @@ public class Cromosoma {
 		System.out.println("el recorrido es"+recorrido);
 		this.funcionObjetivo=100000/(double)recorrido;
 		System.out.println("----------------------------funcion objetivo= "+ funcionObjetivo);
+		this.recorrido=recorrido;
 	}
 	public void asignarCiudadesAleatorias(Ciudad[] ciuds)
 	{

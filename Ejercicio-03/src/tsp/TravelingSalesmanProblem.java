@@ -17,8 +17,8 @@ public class TravelingSalesmanProblem {
 		System.out.println("  1 - Buscar recorrido desde un punto de partida.");
 		System.out.println("  2 - Obtener el recorrido optimo.");
 		System.out.println("Busqueda con Algotimos Geneticos");
-		System.out.println("  3 - Buscar recorrido desde un punto de partida.");
-		System.out.println("  4 - Obtener el recorrido optimo.");
+		
+		System.out.println("  3 - Obtener el recorrido optimo.");
 		System.out.print("Opcion: ");
 		op = scan.nextInt(); 
 		switch(op) {

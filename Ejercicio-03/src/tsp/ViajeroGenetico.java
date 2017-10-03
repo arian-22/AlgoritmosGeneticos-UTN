@@ -23,13 +23,30 @@ public class ViajeroGenetico {
 		poblaciones[0]=poblacionInicial;
 		for(int i=1;i<ciclos;i++)
 		{
+			System.out.println("vuelta:"+(i+1));
 			Poblacion nueva=new Poblacion();
 			nueva.evolucionar(poblaciones[i-1]);
+			//calcular recorrido
+			for(int k=0;k<23;k++)
+			{
+				nueva.getCromosomas()[k].calcularFuncionObjetivo();
+			}
+			nueva.calcularSumatoria();
+			nueva.calcularFitnessPoblacion();
+			
 			
 			poblaciones[i]=nueva;
 			
 		}
-		
+		Cromosoma ultimoRecorrido[]=poblaciones[199].getCromosomas();
+		System.out.println("Ciudad inicio: "+ultimoRecorrido[0].getCiudades()[0].getNombre());
+		Cromosoma mejor=new Cromosoma();
+		for(int i=1;i<23;i++)
+		{
+			System.out.println(ultimoRecorrido[1].getCiudades()[i].getNombre());
+			
+		}
+		System.out.println("distancia: "+ultimoRecorrido[1].getRecorrido());
 	}
 	private static void cargaDatos(Ciudad[] ciuds) {
 			//cargar ciudades

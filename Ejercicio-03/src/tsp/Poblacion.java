@@ -38,7 +38,7 @@ public class Poblacion {
 		calcularFitnessPoblacion();
 		
 	}
-	private void calcularFitnessPoblacion() {
+	public void calcularFitnessPoblacion() {
 		// TODO Auto-generated method stub
 		for (int i=0;i<50;i++)
 		{
@@ -53,17 +53,41 @@ public class Poblacion {
 		}
 		
 	}
+	public void calcularLosFitness()
+	{
+		
+	}
 	public void evolucionar(Poblacion pobAnterior) {
 		// TODO Auto-generated method stub
 		Random rnd=new Random();
 		Cromosoma padres[]=new Cromosoma[50];
 		padres=metodoDeLaRuleta(pobAnterior);
+		
 		for(int i=0;i<50;i+=2)
 		{
+			int crossover=1;
 			double aleatorio=Math.random();
 			if(aleatorio<=0.75)
 			{
-				crossover(padres[i],padres[i+1])
+				crossover(padres[i],padres[i+1]);
+			}
+			else{
+				setUnCromosoma(padres[i]);
+				setUnCromosoma(padres[i+1]);
+				System.out.println("no hubo crossover");
+			}
+			System.out.println("-------------------------------------");
+			
+		}
+		for(int i=0;i<50;i++)
+		{
+			double random=Math.random();
+			if(random<=0.05)
+			{
+				mutacion(this.cromosomas[i]);
+			}
+			else{
+				//System.out.println("no hubo mutacion");
 			}
 		}
 		
@@ -73,15 +97,16 @@ public class Poblacion {
 		Cromosoma papas[]=new Cromosoma[50];
 		Random rnd=new Random();
 		Cromosoma cromosom[]=pobAnterior.getCromosomas();
-		System.out.println("el fitnees del primero es: "+cromosom[0]);
-		
+		//System.out.println("el fitnees del primero es: "+cromosom[0]);
+		System.out.println(cromosom[0].getRecorrido());
 		
 		for(int i=0;i<50;i++)
 		{
 			
 			double inferior=0;
-			System.out.println("el fitness adentro es: "+cromosom[0].getFitness());
+			//System.out.println("el fitness adentro es: "+cromosom[0].getFitness());
 			double superior=0;
+			
 			superior=cromosom[0].getFitness();
 			int posicion=0;
 			boolean p=true;
@@ -91,18 +116,20 @@ public class Poblacion {
 		
 			while (p)
 				
+				
 			{
 				
 				
 			if(random>inferior && random<superior)
 			{
-				padres[i]=cromosom[posicion];
+				papas[i]=cromosom[posicion];
 				
 				//paresDePadres[i].setArrayDeGenes(valoresEnRuleta[posicion].getArrayDeGenes());
 				p=false;
 			}
 			else
 			{
+				
 				if(posicion<49)
 				{
 				inferior=superior;
@@ -149,7 +176,7 @@ public class Poblacion {
 				nroAzar++;
 				int nroAzar2=nroAzar;
 		// despues del corte reviso que no se repitan //
-		for(int i=0; 0 <23; i++)
+		for(int i=0; i <23; i++)
 		{
 			if(Arrays.asList(hijo1.getCiudades()).contains(c2.getCiudades()[i])==false)
 			{
@@ -160,17 +187,32 @@ public class Poblacion {
 			{
 				hijo2.setUnaCiudad(nroAzar2,c1.getCiudades()[i]);
 				nroAzar2++;
-			};
+			}
 			
-		}int h=setUnCromosoma(hijo1);
+		} setUnCromosoma(hijo1);
+		setUnCromosoma(hijo2);
 			
 	}
 	
-	private int setUnCromosoma(Cromosoma cromo)
+	private void setUnCromosoma(Cromosoma cromo)
 	{
 		this.cromosomas[this.posicionInicial]=cromo;
 		posicionInicial++;
-		return 1;
 		}
-}
+	public void mutacion(Cromosoma c1)
+	{
+		Random rnd=new Random();
+		int pos1= (int)(rnd.nextDouble() * 23);
+		int pos2= (int)(rnd.nextDouble() * 23);
+		
+		Ciudad aux = c1.getCiudades()[pos1];
+		c1.setUnaCiudad(pos1,c1.getCiudades()[pos2]);
+		c1.getCiudades() [pos2] = aux;
+		
+		}
+		
+		
+		
+		//System.out.println("hijo"+c1.getCiudades());
+	}
 
