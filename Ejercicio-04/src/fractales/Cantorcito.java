@@ -79,7 +79,7 @@ public class Cantorcito extends Applet{
 			return super.handleEvent(event);
 		}
 
-		//{{DECLARE_CONTROLS
+		//DECLARE_CONTROLS
 		java.awt.Choice Lista_conjuntos;
 		java.awt.Label Etiqueta;
 		java.awt.Label Etiqueta2;
@@ -87,7 +87,7 @@ public class Cantorcito extends Applet{
 		java.awt.Button subir_fases;
 		java.awt.Button bajar_fases;
 		
-		//}}
+		//
 		
 		
 	public void paint(Graphics g){
