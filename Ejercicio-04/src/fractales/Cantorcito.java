@@ -12,30 +12,26 @@ public class Cantorcito extends Applet{
 	        int cp[] = {250,60,550,350};
 	        
 		void ListaConjuntos_Action(Event event) {
-			// to do: place event handler code here.
-	        //cjto = Lista_conjuntos.getSelectedItem();
-			// Repaint the Panel
-			//repaint(cp[0],cp[1],cp[2]-cp[0],cp[3]-cp[1]);
-			//}}
+			
 		}
 			
 		void bajarFases_Clicked(Event event) {
 		    if (fases > 0) fases --;
 		    sel_fases.setText(Integer.toString(fases));
 		    repaint(cp[0],cp[1],cp[2]-cp[0],cp[3]-cp[1]);
-			// to do: place event handler code here.
+			
 		}
 
 		void subirFases_Clicked(Event event) {
 		    fases ++;
 		    sel_fases.setText(Integer.toString(fases));
 		    repaint(cp[0],cp[1],cp[2]-cp[0],cp[3]-cp[1]);
-			// to do: place event handler code here.
+			
 		}
 		
 		public void init() {
 			super.init();
-			//{{INIT_CONTROLS
+			//_armado del applet
 			setLayout(null);
 			addNotify();
 			resize(591,383);
@@ -43,7 +39,7 @@ public class Cantorcito extends Applet{
 			
 			Etiqueta = new java.awt.Label("Conjunto de Cantor",Label.CENTER);
 			Etiqueta.reshape(60,12,446,39);
-			Etiqueta.setFont(new Font("TimesRoman", Font.BOLD|Font.ITALIC, 40));
+			Etiqueta.setFont(new Font("Calibri", Font.BOLD|Font.ITALIC, 40));
 			add(Etiqueta);
 			Etiqueta2 = new java.awt.Label("Fases:");
 			Etiqueta2.reshape(36,132,63,29);
@@ -60,9 +56,10 @@ public class Cantorcito extends Applet{
 			bajar_fases = new java.awt.Button("-");
 			bajar_fases.reshape(156,144,18,14);
 			add(bajar_fases);
-			//}}
+			
 		}
 
+		//EVENTOS APPLET
 		public boolean handleEvent(Event event) {
 			if (event.target == Lista_conjuntos && event.id == Event.ACTION_EVENT) {
 				ListaConjuntos_Action(event);
@@ -79,7 +76,7 @@ public class Cantorcito extends Applet{
 			return super.handleEvent(event);
 		}
 
-		//DECLARE_CONTROLS
+		//DECLARE_CONTROLES
 		java.awt.Choice Lista_conjuntos;
 		java.awt.Label Etiqueta;
 		java.awt.Label Etiqueta2;
@@ -87,11 +84,11 @@ public class Cantorcito extends Applet{
 		java.awt.Button subir_fases;
 		java.awt.Button bajar_fases;
 		
-		//
+		
 		
 		
 	public void paint(Graphics g){
-        //setBackground(Color.white);
+        
         g.drawRect(cp[0],cp[1],cp[2]-cp[0],cp[3]-cp[1]);
         
             int x1,x2,y;
@@ -102,6 +99,7 @@ public class Cantorcito extends Applet{
             cantorizar(g,x1,y,x2,y,fases);
         
         }
+	
 	 public void cantorizar(Graphics g,int x1, int y1, int x2, int y2,int f){
 	        float untercio,dostercios;
 	        untercio = (x1+((x2-x1)/3)) ;
